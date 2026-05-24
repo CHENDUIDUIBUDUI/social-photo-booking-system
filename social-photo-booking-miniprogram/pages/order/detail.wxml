@@ -1,0 +1,91 @@
+<!-- 订单详情页面 -->
+<view class="container">
+  <view wx:if="{{loading}}" class="loading-container">
+    <text class="loading-text">加载中...</text>
+  </view>
+  <view wx:else class="content">
+    <!-- 订单状态 -->
+    <view class="status-section">
+      <text class="status-text" style="color: {{order.statusColor}}">{{order.statusText}}</text>
+      <text class="status-desc">{{order.statusDesc}}</text>
+    </view>
+    
+    <!-- 订单信息 -->
+    <view class="info-section">
+      <view class="info-item">
+        <text class="info-label">订单号</text>
+        <text class="info-value">{{order.orderId}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">创建时间</text>
+        <text class="info-value">{{order.createTime}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">完成时间</text>
+        <text class="info-value">{{order.completeTime || '未完成'}}</text>
+      </view>
+    </view>
+    
+    <!-- 服务信息 -->
+    <view class="service-section">
+      <view class="service-header">
+        <text class="service-title">服务信息</text>
+      </view>
+      <view class="service-content">
+        <image class="service-image" src="{{order.service.imageUrl}}"></image>
+        <view class="service-info">
+          <text class="service-name">{{order.service.title}}</text>
+          <text class="service-price">¥{{order.service.price}}</text>
+          <text class="service-description">{{order.service.description}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 联系人信息 -->
+    <view class="contact-section">
+      <view class="contact-header">
+        <text class="contact-title">联系人信息</text>
+      </view>
+      <view class="contact-content">
+        <view class="contact-item">
+          <text class="contact-label">姓名</text>
+          <text class="contact-value">{{order.contact.name}}</text>
+        </view>
+        <view class="contact-item">
+          <text class="contact-label">电话</text>
+          <text class="contact-value">{{order.contact.phone}}</text>
+        </view>
+        <view class="contact-item">
+          <text class="contact-label">地点</text>
+          <text class="contact-value">{{order.contact.location}}</text>
+        </view>
+        <view class="contact-item">
+          <text class="contact-label">时间</text>
+          <text class="contact-value">{{order.contact.time}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 备注 -->
+    <view class="remark-section">
+      <view class="remark-header">
+        <text class="remark-title">备注</text>
+      </view>
+      <view class="remark-content">
+        <text class="remark-text">{{order.remark || '无'}}</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class="footer">
+    <button wx:if="{{order.status === 0}}" class="footer-button cancel" bindtap="cancelOrder">
+      取消订单
+    </button>
+    <button wx:if="{{order.status === 0}}" class="footer-button pay" bindtap="payDeposit">
+      支付定金
+    </button>
+    <button wx:elif="{{order.status === 1}}" class="footer-button confirm" bindtap="confirmOrder">
+      确认完成
+    </button>
+  </view>
+</view>

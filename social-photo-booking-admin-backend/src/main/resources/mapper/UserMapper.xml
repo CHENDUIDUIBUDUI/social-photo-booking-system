@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.socialshoot.admin.mapper.UserMapper">
+    <select id="selectByCondition" resultType="com.socialshoot.admin.entity.User">
+        SELECT * FROM user WHERE 1=1
+        <if test="nickname != null and nickname != ''">
+            AND nickname LIKE CONCAT('%', #{nickname}, '%')
+        </if>
+        <if test="phone != null and phone != ''">
+            AND phone LIKE CONCAT('%', #{phone}, '%')
+        </if>
+        <if test="role != null">
+            AND role_id = #{role}
+        </if>
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="countAllUsers" resultType="int">
+        SELECT COUNT(*) FROM user
+    </select>
+
+    <select id="countByRole" resultType="int">
+        SELECT COUNT(*) FROM user WHERE role_id = #{role}
+    </select>
+
+    <select id="countPhotographers" resultType="int">
+        SELECT COUNT(*) FROM user WHERE role_id = 1
+    </select>
+
+    <select id="selectByOpenId" resultType="com.socialshoot.admin.entity.User">
+        SELECT id, open_id as openId, union_id as unionId, nickname, avatar, phone, role_id as roleId, credit_score as creditScore, status, last_login_time as lastLoginTime, create_time as createTime, update_time as updateTime FROM user WHERE open_id = #{openId}
+    </select>
+
+    <select id="selectByPhone" resultType="com.socialshoot.admin.entity.User">
+        SELECT id, open_id as openId, union_id as unionId, nickname, avatar, phone, role_id as roleId, credit_score as creditScore, status, last_login_time as lastLoginTime, create_time as createTime, update_time as updateTime FROM user WHERE phone = #{phone}
+    </select>
+
+    <insert id="insert" parameterType="com.socialshoot.admin.entity.User">
+        INSERT INTO user (open_id, nickname, avatar, phone, role_id, credit_score, status, create_time, update_time)
+        VALUES (#{openId}, #{nickname}, #{avatar}, #{phone}, #{roleId}, #{creditScore}, #{status}, #{createTime}, #{updateTime})
+    </insert>
+
+    <update id="update" parameterType="com.socialshoot.admin.entity.User">
+        UPDATE user SET nickname = #{nickname}, avatar = #{avatar}, update_time = #{updateTime}
+        WHERE id = #{id}
+    </update>
+
+    <update id="updatePhone" parameterType="map">
+        UPDATE user SET phone = #{phone}, update_time = #{updateTime} WHERE id = #{id}
+    </update>
+
+    <update id="updateStatus" parameterType="map">
+        UPDATE user SET status = #{status} WHERE id = #{id}
+    </update>
+
+    <update id="updateRoleId" parameterType="map">
+        UPDATE user SET role_id = #{roleId}, update_time = NOW() WHERE id = #{id}
+    </update>
+
+    <select id="selectHotPhotographers" resultType="com.socialshoot.admin.entity.User">
+        SELECT id, open_id as openId, union_id as unionId, nickname, avatar, phone, role_id as roleId, credit_score as creditScore, status, last_login_time as lastLoginTime, create_time as createTime, update_time as updateTime FROM user WHERE role_id = 1 ORDER BY credit_score DESC LIMIT #{limit}
+    </select>
+
+    <select id="selectAll" resultType="com.socialshoot.admin.entity.User">
+        SELECT id, open_id as openId, union_id as unionId, nickname, avatar, phone, role_id as roleId, credit_score as creditScore, status, last_login_time as lastLoginTime, create_time as createTime, update_time as updateTime FROM user
+    </select>
+</mapper>

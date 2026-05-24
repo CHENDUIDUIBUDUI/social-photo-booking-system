@@ -1,0 +1,66 @@
+<!-- 意见反馈页面 -->
+<view class="container">
+  <view class="header">
+    <view class="header-left" bindtap="navigateBack">
+      <text class="header-back">←</text>
+    </view>
+    <view class="header-title">意见反馈</view>
+    <view class="header-right"></view>
+  </view>
+  
+  <view class="content">
+    <!-- 反馈类型 -->
+    <view class="form-section">
+      <view class="form-label">反馈类型</view>
+      <view class="type-select">
+        <view wx:for="{{feedbackTypes}}" wx:key="{{item.value}}" 
+              class="type-item {{feedbackType === item.value ? 'active' : ''}}" 
+              bindtap="selectType" data-value="{{item.value}}">
+          <text class="type-text">{{item.label}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 反馈内容 -->
+    <view class="form-section">
+      <view class="form-label">反馈内容</view>
+      <textarea class="form-textarea" 
+                value="{{feedbackContent}}" 
+                bindinput="bindFeedbackContentInput" 
+                placeholder="请详细描述您遇到的问题或建议" 
+                maxlength="500" />
+      <text class="char-count">{{feedbackContent.length}}/500</text>
+    </view>
+    
+    <!-- 联系方式 -->
+    <view class="form-section">
+      <view class="form-label">联系方式（选填）</view>
+      <input class="form-input" 
+             value="{{contactInfo}}" 
+             bindinput="bindContactInfoInput" 
+             placeholder="请输入手机号或邮箱" />
+    </view>
+    
+    <!-- 图片上传 -->
+    <view class="form-section">
+      <view class="form-label">图片（选填）</view>
+      <view class="image-uploader">
+        <view wx:for="{{images}}" wx:key="{{index}}" class="image-item">
+          <image class="image" src="{{item}}"></image>
+          <text class="image-delete" bindtap="deleteImage" data-index="{{index}}">×</text>
+        </view>
+        <view wx:if="{{images.length < 3}}" class="image-add" bindtap="chooseImage">
+          <text class="image-add-icon">+</text>
+          <text class="image-add-text">添加图片</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 提交按钮 -->
+    <view class="submit-section">
+      <button class="submit-button" bindtap="submitFeedback" loading="{{loading}}">
+        提交反馈
+      </button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,71 @@
+<!-- 通知设置页面 -->
+<view class="container">
+  <view class="header">
+    <view class="header-left" bindtap="navigateBack">
+      <text class="header-back">←</text>
+    </view>
+    <view class="header-title">通知设置</view>
+    <view class="header-right"></view>
+  </view>
+  
+  <view class="content">
+    <!-- 消息通知 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">消息通知</text>
+      </view>
+      <view class="section-content">
+        <view class="setting-item">
+          <text class="setting-label">新消息通知</text>
+          <switch checked="{{notification.newMessage}}" bindchange="toggleNewMessage" />
+        </view>
+        <view class="setting-item">
+          <text class="setting-label">评论通知</text>
+          <switch checked="{{notification.comment}}" bindchange="toggleComment" />
+        </view>
+        <view class="setting-item">
+          <text class="setting-label">点赞通知</text>
+          <switch checked="{{notification.like}}" bindchange="toggleLike" />
+        </view>
+        <view class="setting-item">
+          <text class="setting-label">关注通知</text>
+          <switch checked="{{notification.follow}}" bindchange="toggleFollow" />
+        </view>
+      </view>
+    </view>
+    
+    <!-- 订单通知 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">订单通知</text>
+      </view>
+      <view class="section-content">
+        <view class="setting-item">
+          <text class="setting-label">新订单通知</text>
+          <switch checked="{{notification.newOrder}}" bindchange="toggleNewOrder" />
+        </view>
+        <view class="setting-item">
+          <text class="setting-label">订单状态变更通知</text>
+          <switch checked="{{notification.orderStatus}}" bindchange="toggleOrderStatus" />
+        </view>
+      </view>
+    </view>
+    
+    <!-- 系统通知 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">系统通知</text>
+      </view>
+      <view class="section-content">
+        <view class="setting-item">
+          <text class="setting-label">系统公告</text>
+          <switch checked="{{notification.system}}" bindchange="toggleSystem" />
+        </view>
+        <view class="setting-item">
+          <text class="setting-label">活动通知</text>
+          <switch checked="{{notification.activity}}" bindchange="toggleActivity" />
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

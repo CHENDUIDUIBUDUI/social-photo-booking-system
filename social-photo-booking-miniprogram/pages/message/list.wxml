@@ -1,0 +1,84 @@
+<!-- 消息列表页面 -->
+<view class="container">
+  <!-- 顶部标签栏 -->
+  <view class="tab-bar">
+    <view 
+      class="tab-item {{activeTab === 'system' ? 'active' : ''}}" 
+      bindtap="switchTab" 
+      data-tab="system"
+    >
+      <text class="tab-text">系统通知</text>
+      <view wx:if="{{unreadCount.system > 0}}" class="tab-unread"></view>
+      <view class="tab-underline" wx:if="{{activeTab === 'system'}}"></view>
+    </view>
+    <view 
+      class="tab-item {{activeTab === 'order' ? 'active' : ''}}" 
+      bindtap="switchTab" 
+      data-tab="order"
+    >
+      <text class="tab-text">订单通知</text>
+      <view wx:if="{{unreadCount.order > 0}}" class="tab-unread"></view>
+      <view class="tab-underline" wx:if="{{activeTab === 'order'}}"></view>
+    </view>
+  </view>
+  
+  <!-- 消息列表 -->
+  <view class="content">
+    
+    <!-- 系统通知列表 -->
+    <view wx:if="{{activeTab === 'system'}}">
+      <view wx:if="{{systemList.length === 0}}">
+        <view class="empty-container">
+          <image class="empty-image" src="https://picsum.photos/200/200?random=6"></image>
+          <text class="empty-text">暂无系统通知</text>
+        </view>
+      </view>
+      
+      <view wx:else class="message-list">
+        <view wx:for="{{systemList}}" wx:key="id" class="message-item system-item">
+          <view class="message-avatar-container">
+            <image class="message-avatar system-avatar" src="/assets/icons/news.png"></image>
+            <view wx:if="{{item.unread}}" class="unread-dot"></view>
+          </view>
+          <view class="message-info">
+            <view class="message-header">
+              <text class="message-name system-name">系统通知</text>
+              <text class="message-time">{{item.time}}</text>
+            </view>
+            <text class="message-content system-content">{{item.content}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 订单通知列表 -->
+    <view wx:if="{{activeTab === 'order'}}">
+      <view wx:if="{{orderList.length === 0}}">
+        <view class="empty-container">
+          <image class="empty-image" src="https://picsum.photos/200/200?random=7"></image>
+          <text class="empty-text">暂无订单通知</text>
+        </view>
+      </view>
+      
+      <view wx:else class="message-list">
+        <view wx:for="{{orderList}}" wx:key="id" class="message-item order-item">
+          <view class="message-avatar-container">
+            <image class="message-avatar order-avatar" src="/assets/icons/home.png"></image>
+            <view wx:if="{{item.unread}}" class="unread-dot"></view>
+          </view>
+          <view class="message-info">
+            <view class="message-header">
+              <text class="message-name order-name">{{item.title}}</text>
+              <text class="message-time">{{item.time}}</text>
+            </view>
+            <text class="message-content order-content">{{item.content}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="loading" wx:if="{{loading}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+</view>

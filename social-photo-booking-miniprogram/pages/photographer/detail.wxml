@@ -1,0 +1,164 @@
+<!-- 摄影师详情页 -->
+<view class="container">
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-container">
+    <text class="loading-text">加载中...</text>
+  </view>
+  
+  <!-- 摄影师详情内容 -->
+  <view wx:else class="photographer-detail">
+    <!-- 封面图 -->
+    <view class="cover-section">
+      <image class="cover-image" src="{{photographer.cover || 'https://api.dicebear.com/7.x/personas/svg?seed=cover&size=750'}}" binderror="handleImageError" data-type="cover" mode="aspectFill" />
+      <view class="cover-overlay">
+        <view class="collect-btn" bindtap="toggleCollect">
+          <text class="collect-icon">{{photographer.collected ? '★' : '☆'}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 摄影师信息区 -->
+    <view class="info-section">
+      <image class="avatar" src="{{photographer.avatar}}" binderror="handleImageError" data-type="avatar" />
+      <view class="info-content">
+        <view class="name-row">
+          <text class="name">{{photographer.name}}</text>
+          <view class="certification-tag" wx:if="{{photographer.certified}}">认证摄影师</view>
+        </view>
+        <text class="bio">{{photographer.bio || '暂无简介'}}</text>
+        <view class="stats">
+          <view class="stat-item">
+            <text class="stat-value">{{photographer.followers || 0}}</text>
+            <text class="stat-label">粉丝</text>
+          </view>
+          <view class="stat-divider"></view>
+          <view class="stat-item">
+            <text class="stat-value">{{photographer.orders}}</text>
+            <text class="stat-label">接单量</text>
+          </view>
+          <view class="stat-divider"></view>
+          <view class="stat-item">
+            <text class="stat-value">{{photographer.rating}}</text>
+            <text class="stat-label">好评率</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 标签栏 -->
+    <view class="tab-bar">
+      <view class="tab-item {{activeTab === 'works' ? 'active' : ''}}" bindtap="switchTab" data-tab="works">
+        <text class="tab-text">作品</text>
+        <view class="tab-indicator" wx:if="{{activeTab === 'works'}}"></view>
+      </view>
+      <view class="tab-item {{activeTab === 'packages' ? 'active' : ''}}" bindtap="switchTab" data-tab="packages">
+        <text class="tab-text">套餐</text>
+        <view class="tab-indicator" wx:if="{{activeTab === 'packages'}}"></view>
+      </view>
+      <view class="tab-item {{activeTab === 'reviews' ? 'active' : ''}}" bindtap="switchTab" data-tab="reviews">
+        <text class="tab-text">评价</text>
+        <view class="tab-indicator" wx:if="{{activeTab === 'reviews'}}"></view>
+      </view>
+      <view class="tab-item {{activeTab === 'about' ? 'active' : ''}}" bindtap="switchTab" data-tab="about">
+        <text class="tab-text">关于</text>
+        <view class="tab-indicator" wx:if="{{activeTab === 'about'}}"></view>
+      </view>
+    </view>
+    
+    <!-- 内容区 -->
+    <view class="content-section">
+      <!-- 作品页 -->
+      <view wx:if="{{activeTab === 'works'}}" class="works-content">
+        <view class="works-waterfall">
+          <view class="waterfall-column">
+            <image 
+              class="work-image" 
+              wx:for="{{leftWorks}}" 
+              wx:key="index" 
+              src="{{item}}" 
+              binderror="handleImageError" 
+              bindtap="previewImage"
+              data-url="{{item}}"
+              mode="aspectFill"
+            />
+          </view>
+          <view class="waterfall-column">
+            <image 
+              class="work-image" 
+              wx:for="{{rightWorks}}" 
+              wx:key="index" 
+              src="{{item}}" 
+              binderror="handleImageError" 
+              bindtap="previewImage"
+              data-url="{{item}}"
+              mode="aspectFill"
+            />
+          </view>
+        </view>
+      </view>
+      
+      <!-- 套餐页 -->
+      <view wx:if="{{activeTab === 'packages'}}" class="packages-content">
+        <view class="package-card" wx:for="{{packages}}" wx:key="index">
+          <view class="package-header">
+            <text class="package-name">{{item.name}}</text>
+            <text class="package-price">¥{{item.price}}</text>
+          </view>
+          <text class="package-desc">{{item.description}}</text>
+          <view class="package-features">
+            <view class="feature-item" wx:for="{{item.featuresArray}}" wx:key="index" wx:for-item="feature">
+              <text class="feature-icon">✓</text>
+              <text class="feature-text">{{feature}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 评价页 -->
+      <view wx:if="{{activeTab === 'reviews'}}" class="reviews-content">
+        <view class="review-item" wx:for="{{reviews}}" wx:key="index">
+          <view class="review-header">
+            <image class="review-avatar" src="{{item.avatar}}" />
+            <view class="review-info">
+              <text class="review-name">{{item.name}}</text>
+              <text class="review-time">{{item.time}}</text>
+            </view>
+            <view class="review-rating">
+              <text class="rating-star" wx:for="{{[1,2,3,4,5]}}" wx:key="index" wx:for-item="star">{{star <= item.rating ? '★' : '☆'}}</text>
+            </view>
+          </view>
+          <text class="review-content">{{item.content}}</text>
+        </view>
+      </view>
+      
+      <!-- 关于页 -->
+      <view wx:if="{{activeTab === 'about'}}" class="about-content">
+        <view class="about-section">
+          <text class="about-title">个人简介</text>
+          <text class="about-text">{{photographer.bio || '暂无简介'}}</text>
+        </view>
+        <view class="about-section">
+          <text class="about-title">擅长风格</text>
+          <view class="style-tags">
+            <view class="tag" wx:for="{{photographer.styles}}" wx:key="{{index}}">
+              <text class="tag-text">{{item}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="about-section">
+          <text class="about-title">服务区域</text>
+          <text class="about-text">{{photographer.region || '全国'}}</text>
+        </view>
+        <view class="about-section">
+          <text class="about-title">起拍价格</text>
+          <text class="about-text">¥{{photographer.price}}起</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 悬浮预约按钮 -->
+    <view class="floating-btn" bindtap="bookNow">
+      <text class="btn-text">立即预约</text>
+    </view>
+  </view>
+</view>

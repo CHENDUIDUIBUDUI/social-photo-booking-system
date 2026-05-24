@@ -1,0 +1,153 @@
+/* 套餐管理页面样式 - 轻透氛围感极简风 */
+.container {
+  min-height: 100vh;
+  background-color: #FDFDFD;
+}
+
+/* 创建套餐按钮 */
+.create-button-container {
+  padding: 16px;
+}
+
+.create-button {
+  background: linear-gradient(90deg, #A8E6CF 0%, #D4A5FF 100%);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 16px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(168, 230, 207, 0.2);
+  min-height: 44px;
+  width: 100%;
+}
+
+.create-icon {
+  font-size: 20px;
+  margin-right: 8px;
+  font-weight: 300;
+}
+
+.create-text {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* 套餐列表 */
+.package-list {
+  padding: 0 16px 24px;
+}
+
+.package-item {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 20px rgba(31, 38, 135, 0.05);
+}
+
+.package-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.package-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #212529;
+  font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.package-price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #FFB5A7;
+  font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.package-description {
+  font-size: 14px;
+  color: #495057;
+  margin-bottom: 16px;
+  line-height: 1.5;
+  font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.package-features {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.feature-tag {
+  background: linear-gradient(90deg, #A8E6CF26 0%, #D4A5FF26 100%);
+  color: #495057;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.package-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.action-btn {
+  padding: 8px 20px;
+  border-radius: 16px;
+  font-size: 14px;
+  border: none;
+  min-width: 60px;
+  font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 500;
+}
+
+.edit-btn {
+  background: linear-gradient(90deg, #A8E6CF 0%, #D4A5FF 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(168, 230, 207, 0.2);
+}
+
+.delete-btn {
+  background: #FF8A80;
+  color: #FFFFFF;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  opacity: 0.6;
+}
+
+.empty-text {
+  font-size: 16px;
+  color: #868E96;
+  margin-bottom: 8px;
+  font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.empty-hint {
+  font-size: 14px;
+  color: #ADB5BD;
+  font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
+}

@@ -1,0 +1,36 @@
+<!-- 我的关注页面 -->
+<view class="container">
+  <view class="header">
+    <view class="header-left" bindtap="navigateBack">
+      <text class="header-back">←</text>
+    </view>
+    <view class="header-title">我的关注</view>
+    <view class="header-right"></view>
+  </view>
+  
+  <view class="content">
+    <view wx:if="{{followList.length === 0}}">
+      <view class="empty-container">
+        <image class="empty-image" src="https://picsum.photos/200/200?random=2"></image>
+        <text class="empty-text">暂无关注</text>
+      </view>
+    </view>
+    
+    <view wx:else class="follow-list">
+      <view wx:for="{{followList}}" wx:key="{{item.id}}" class="follow-item">
+        <image class="follow-avatar" src="{{item.avatar}}"></image>
+        <view class="follow-info">
+          <text class="follow-name">{{item.name}}</text>
+          <text class="follow-bio">{{item.bio}}</text>
+        </view>
+        <button class="follow-button" bindtap="unfollow" data-id="{{item.id}}">
+          已关注
+        </button>
+      </view>
+    </view>
+  </view>
+  
+  <view class="loading" wx:if="{{loading}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+</view>

@@ -1,0 +1,39 @@
+<view class="role-select-container">
+  <!-- 顶部标题 -->
+  <view class="header-section">
+    <view class="header-title">选择您的角色</view>
+    <view class="header-subtitle">请选择您在平台上的身份</view>
+  </view>
+  
+  <!-- 角色选择卡片 -->
+  <view class="role-cards-section">
+    <view class="role-card" bindtap="selectRole" data-role="photographer">
+      <view class="role-icon photographer-icon">
+        <text class="icon-text">📷</text>
+      </view>
+      <view class="role-title">摄影师</view>
+      <view class="role-description">提供摄影服务，发布作品</view>
+    </view>
+    
+    <view class="role-card" bindtap="selectRole" data-role="model">
+      <view class="role-icon model-icon">
+        <text class="icon-text">👤</text>
+      </view>
+      <view class="role-title">模特</view>
+      <view class="role-description">寻找摄影机会，展示自己</view>
+    </view>
+    
+    <view class="role-card" bindtap="selectRole" data-role="user">
+      <view class="role-icon user-icon">
+        <text class="icon-text">👥</text>
+      </view>
+      <view class="role-title">普通用户</view>
+      <view class="role-description">浏览作品，预约服务</view>
+    </view>
+  </view>
+  
+  <!-- 底部说明 -->
+  <view class="bottom-section">
+    <text class="bottom-text">选择角色后可以在个人中心修改</text>
+  </view>
+</view>

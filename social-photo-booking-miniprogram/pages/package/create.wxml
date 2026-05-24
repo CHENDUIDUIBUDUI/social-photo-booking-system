@@ -1,0 +1,50 @@
+<!-- 套餐创建页面 -->
+<view class="container">
+  <!-- 表单内容 -->
+  <form bindsubmit="submitForm" class="form">
+    <!-- 套餐名称 -->
+    <view class="form-item">
+      <text class="form-label">套餐名称</text>
+      <input type="text" name="name" placeholder="请输入套餐名称" value="{{formData.name}}" bindinput="bindInput" data-field="name" class="form-input" />
+    </view>
+    
+    <!-- 套餐价格 -->
+    <view class="form-item">
+      <text class="form-label">套餐价格</text>
+      <input type="number" name="price" placeholder="请输入套餐价格" value="{{formData.price}}" bindinput="bindInput" data-field="price" class="form-input" />
+    </view>
+    
+    <!-- 套餐描述 -->
+    <view class="form-item">
+      <text class="form-label">套餐描述</text>
+      <textarea name="description" placeholder="请输入套餐描述" value="{{formData.description}}" bindinput="bindInput" data-field="description" class="form-textarea" />
+    </view>
+    
+    <!-- 包含服务 -->
+    <view class="form-item">
+      <text class="form-label">包含服务</text>
+      <view class="features-list">
+        <view wx:for="{{formData.features}}" wx:key="index" class="feature-item">
+          <input type="text" value="{{item}}" bindinput="bindFeatureInput" data-index="{{index}}" class="feature-input" />
+          <view class="feature-remove" bindtap="removeFeature" data-index="{{index}}">×</view>
+        </view>
+        <view class="feature-add" bindtap="addFeature">
+          <text class="add-icon">+</text>
+          <text class="add-text">添加服务</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 状态 -->
+    <view class="form-item">
+      <text class="form-label">状态</text>
+      <view class="status-switch">
+        <text class="status-text">{{formData.status === 1 ? '启用' : '禁用'}}</text>
+        <switch value="{{formData.status === 1}}" bindchange="bindStatusChange" />
+      </view>
+    </view>
+    
+    <!-- 保存按钮 -->
+    <button form-type="submit" class="submit-button">保存</button>
+  </form>
+</view>

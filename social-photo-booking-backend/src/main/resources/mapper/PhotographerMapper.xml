@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.photo.booking.mapper.PhotographerMapper">
+
+    <resultMap id="PhotographerResultMap" type="com.photo.booking.entity.Photographer">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="name" column="name"/>
+        <result property="avatar" column="avatar"/>
+        <result property="certified" column="certified"/>
+        <result property="certifiedTime" column="certified_time"/>
+        <result property="orders" column="orders"/>
+        <result property="rating" column="rating"/>
+        <result property="price" column="price"/>
+        <result property="region" column="region"/>
+        <result property="styles" column="styles"/>
+        <result property="coverImage" column="cover_image"/>
+        <result property="bio" column="bio"/>
+        <result property="works" column="works"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <select id="selectById" resultMap="PhotographerResultMap">
+        SELECT p.* 
+        FROM photographer p 
+        WHERE p.id = #{id} AND p.status = 1
+    </select>
+
+    <select id="selectByUserId" resultMap="PhotographerResultMap">
+        SELECT p.* 
+        FROM photographer p 
+        WHERE p.user_id = #{userId}
+    </select>
+
+    <select id="selectAll" resultMap="PhotographerResultMap">
+        SELECT p.* 
+        FROM photographer p 
+        WHERE p.status = 1 
+        ORDER BY p.rating DESC, p.orders DESC
+    </select>
+
+    <select id="selectByRegion" resultMap="PhotographerResultMap">
+        SELECT p.* 
+        FROM photographer p 
+        WHERE p.region = #{region} AND p.status = 1 
+        ORDER BY p.rating DESC, p.orders DESC
+    </select>
+
+    <select id="selectByStyle" resultMap="PhotographerResultMap">
+        SELECT p.* 
+        FROM photographer p 
+        WHERE FIND_IN_SET(#{style}, p.styles) > 0 AND p.status = 1 
+        ORDER BY p.rating DESC, p.orders DESC
+    </select>
+
+    <select id="selectByPriceRange" resultMap="PhotographerResultMap">
+        SELECT p.* 
+        FROM photographer p 
+        WHERE p.price = #{price} AND p.status = 1 
+        ORDER BY p.orders DESC
+    </select>
+
+    <select id="selectByCertified" resultMap="PhotographerResultMap">
+        SELECT p.* 
+        FROM photographer p 
+        WHERE p.certified = #{certified} AND p.status = 1 
+        ORDER BY p.rating DESC, p.orders DESC
+    </select>
+
+    <insert id="insert" parameterType="com.photo.booking.entity.Photographer" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO photographer (user_id, name, avatar, certified, certified_time, orders, rating, price, region, styles, cover_image, bio, works, status, create_time, update_time)
+        VALUES (#{userId}, #{name}, #{avatar}, #{certified}, #{certifiedTime}, #{orders}, #{rating}, #{price}, #{region}, #{styles}, #{coverImage}, #{bio}, #{works}, #{status}, #{createTime}, #{updateTime})
+    </insert>
+
+    <update id="update" parameterType="com.photo.booking.entity.Photographer">
+        UPDATE photographer
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="avatar != null">avatar = #{avatar},</if>
+            <if test="certified != null">certified = #{certified},</if>
+            <if test="certifiedTime != null">certified_time = #{certifiedTime},</if>
+            <if test="orders != null">orders = #{orders},</if>
+            <if test="rating != null">rating = #{rating},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="region != null">region = #{region},</if>
+            <if test="styles != null">styles = #{styles},</if>
+            <if test="coverImage != null">cover_image = #{coverImage},</if>
+            <if test="bio != null">bio = #{bio},</if>
+            <if test="works != null">works = #{works},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateOrders">
+        UPDATE photographer SET orders = #{orders} WHERE id = #{id}
+    </update>
+
+    <update id="updateRating">
+        UPDATE photographer SET rating = #{rating} WHERE id = #{id}
+    </update>
+
+    <update id="updateStatus">
+        UPDATE photographer SET status = #{status} WHERE id = #{id}
+    </update>
+
+    <select id="selectHot" resultMap="PhotographerResultMap">
+        SELECT p.* 
+        FROM photographer p 
+        WHERE p.status = 1 
+        ORDER BY p.rating DESC, p.orders DESC 
+        LIMIT #{limit}
+    </select>
+
+</mapper>

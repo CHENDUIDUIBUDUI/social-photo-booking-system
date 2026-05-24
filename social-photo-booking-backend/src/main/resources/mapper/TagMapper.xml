@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.photo.booking.mapper.TagMapper">
+
+    <resultMap id="TagResultMap" type="com.photo.booking.entity.Tag">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="type" column="type"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="TagResultMap">
+        SELECT * FROM tag WHERE status = 1 ORDER BY FIELD(id, 9, 10, 5, 1, 2, 3, 4, 6, 7, 8, 11, 12), id
+    </select>
+
+    <select id="selectByType" resultMap="TagResultMap">
+        SELECT * FROM tag WHERE type = #{type} AND status = 1 ORDER BY id
+    </select>
+
+</mapper>

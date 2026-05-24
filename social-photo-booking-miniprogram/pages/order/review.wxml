@@ -1,0 +1,67 @@
+<!-- 评价页面 -->
+<view class="container">
+  <view class="header">
+    <view class="header-title">评价订单</view>
+    <view class="header-right"></view>
+  </view>
+
+  <view class="content">
+    <!-- 订单信息 -->
+    <view class="order-card" wx:if="{{order}}">
+      <view class="order-header">
+        <text class="order-id">订单号: {{order.orderNo}}</text>
+        <text class="order-price">¥{{order.totalAmount}}</text>
+      </view>
+      <view class="order-info">
+        <text class="order-label">摄影师：</text>
+        <text class="order-value">{{order.photographerName || '摄影师'}}</text>
+      </view>
+    </view>
+
+    <!-- 评分区域 -->
+    <view class="rating-section">
+      <view class="section-title">
+        <text class="title-text">服务评分</text>
+        <text class="required">*</text>
+      </view>
+      <view class="rating-stars">
+        <view 
+          wx:for="{{stars}}" 
+          wx:key="index" 
+          class="star {{item <= rating ? 'active' : ''}}"
+          bindtap="selectRating"
+          data-rating="{{item}}"
+        >
+          <text class="star-icon">{{item <= rating ? '★' : '☆'}}</text>
+        </view>
+      </view>
+      <text class="rating-text">{{getRatingText(rating)}}</text>
+    </view>
+
+    <!-- 评价内容 -->
+    <view class="comment-section">
+      <view class="section-title">
+        <text class="title-text">评价内容</text>
+      </view>
+      <textarea 
+        class="comment-input"
+        placeholder="请输入您对本次服务的评价..."
+        value="{{comment}}"
+        bindinput="inputComment"
+        maxlength="500"
+      ></textarea>
+      <text class="word-count">{{comment.length}}/500</text>
+    </view>
+
+    <!-- 提交按钮 -->
+    <view class="submit-section">
+      <button 
+        class="submit-btn {{submitting ? 'disabled' : ''}}" 
+        bindtap="submitReview"
+        disabled="{{submitting}}"
+      >
+        {{submitting ? '提交中...' : '提交评价'}}
+      </button>
+    </view>
+  </view>
+</view>

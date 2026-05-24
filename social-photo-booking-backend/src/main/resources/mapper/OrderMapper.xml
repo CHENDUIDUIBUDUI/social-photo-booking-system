@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.photo.booking.mapper.OrderMapper">
+
+    <resultMap id="OrderResultMap" type="com.photo.booking.entity.Order">
+        <id column="id" property="id"/>
+        <result column="order_no" property="orderNo"/>
+        <result column="user_id" property="userId"/>
+        <result column="photographer_id" property="photographerId"/>
+        <result column="content_id" property="contentId"/>
+        <result column="total_amount" property="totalAmount"/>
+        <result column="deposit" property="deposit"/>
+        <result column="paid_deposit" property="paidDeposit"/>
+        <result column="balance" property="balance"/>
+        <result column="location" property="location"/>
+        <result column="shoot_time" property="shootTime"/>
+        <result column="notes" property="notes"/>
+        <result column="contact_name" property="contactName"/>
+        <result column="contact_phone" property="contactPhone"/>
+        <result column="status" property="status"/>
+        <result column="user_rating" property="userRating"/>
+        <result column="user_comment" property="userComment"/>
+        <result column="photographer_rating" property="photographerRating"/>
+        <result column="photographer_comment" property="photographerComment"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <select id="selectById" resultMap="OrderResultMap">
+        SELECT * FROM `order` WHERE id = #{id}
+    </select>
+
+    <select id="selectByOrderNo" resultMap="OrderResultMap">
+        SELECT * FROM `order` WHERE order_no = #{orderNo}
+    </select>
+
+    <insert id="insert" parameterType="com.photo.booking.entity.Order" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `order` (
+            order_no, user_id, photographer_id, content_id, total_amount, deposit, paid_deposit, balance,
+            location, shoot_time, notes, contact_name, contact_phone, status, create_time, update_time
+        ) VALUES (
+            #{orderNo}, #{userId}, #{photographerId}, #{contentId}, #{totalAmount}, #{deposit}, #{paidDeposit}, #{balance},
+            #{location}, #{shootTime}, #{notes}, #{contactName}, #{contactPhone}, #{status}, NOW(), NOW()
+        )
+    </insert>
+
+    <update id="update" parameterType="com.photo.booking.entity.Order">
+        UPDATE `order` SET
+            total_amount = #{totalAmount},
+            deposit = #{deposit},
+            paid_deposit = #{paidDeposit},
+            balance = #{balance},
+            location = #{location},
+            shoot_time = #{shootTime},
+            notes = #{notes},
+            contact_name = #{contactName},
+            contact_phone = #{contactPhone},
+            status = #{status},
+            user_rating = #{userRating},
+            user_comment = #{userComment},
+            photographer_rating = #{photographerRating},
+            photographer_comment = #{photographerComment},
+            update_time = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateStatus">
+        UPDATE `order` SET status = #{status}, update_time = NOW() WHERE id = #{id}
+    </update>
+
+    <update id="updateRating">
+        UPDATE `order` SET
+            user_rating = #{userRating},
+            user_comment = #{userComment},
+            photographer_rating = #{photographerRating},
+            photographer_comment = #{photographerComment},
+            update_time = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectByUserId" resultMap="OrderResultMap">
+        SELECT * FROM `order` WHERE user_id = #{userId}
+        <if test="status != null">
+            AND status = #{status}
+        </if>
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="selectByPhotographerId" resultMap="OrderResultMap">
+        SELECT * FROM `order` WHERE photographer_id = #{photographerId}
+        <if test="status != null">
+            AND status = #{status}
+        </if>
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="selectList" resultMap="OrderResultMap">
+        SELECT * FROM `order`
+        <where>
+            <if test="status != null">
+                status = #{status}
+            </if>
+        </where>
+        ORDER BY create_time DESC
+    </select>
+
+</mapper>

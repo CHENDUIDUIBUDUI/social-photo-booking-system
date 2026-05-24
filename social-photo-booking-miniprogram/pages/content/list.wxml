@@ -1,0 +1,49 @@
+<!-- 内容列表页面 -->
+<view class="container">
+  <view class="header">
+    <view class="header-left" bindtap="navigateBack">
+      <text class="header-back">←</text>
+    </view>
+    <view class="header-title">{{type === '0' ? '我的作品' : '我的需求'}}</view>
+    <view class="header-right"></view>
+  </view>
+  
+  <view class="content">
+    <view wx:if="{{contentList.length === 0}}">
+      <view class="empty-container">
+        <image class="empty-image" src="https://picsum.photos/200/200?random=4"></image>
+        <text class="empty-text">{{type === '0' ? '暂无作品' : '暂无需求'}}</text>
+        <button class="empty-button" bindtap="createContent">
+          {{type === '0' ? '发布作品' : '发布需求'}}
+        </button>
+      </view>
+    </view>
+    
+    <view wx:else class="content-list">
+      <view wx:for="{{contentList}}" wx:key="{{item.id}}" class="content-item" bindtap="navigateToDetail" data-id="{{item.id}}">
+        <image class="content-image" src="{{item.imageUrl}}"></image>
+        <view class="content-info">
+          <text class="content-title">{{item.title}}</text>
+          <text class="content-description">{{item.description}}</text>
+          <view class="content-meta">
+            <text class="content-time">{{item.createTime}}</text>
+            <view class="content-stats">
+              <view class="stat-item">
+                <text class="stat-icon">❤️</text>
+                <text class="stat-text">{{item.likes}}</text>
+              </view>
+              <view class="stat-item">
+                <text class="stat-icon">💬</text>
+                <text class="stat-text">{{item.comments}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="loading" wx:if="{{loading}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+</view>

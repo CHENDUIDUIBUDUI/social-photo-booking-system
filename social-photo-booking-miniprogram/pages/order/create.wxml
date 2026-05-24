@@ -1,0 +1,135 @@
+<view class="container">
+  <view wx:if="{{loading}}" class="loading-container">
+    <text class="loading-text">加载中...</text>
+  </view>
+  
+  <view wx:else class="content">
+    <view class="photographer-card" wx:if="{{photographer}}">
+      <image class="photographer-avatar" src="{{photographer.avatar}}" mode="aspectFill" />
+      <view class="photographer-info">
+        <text class="photographer-name">{{photographer.name}}</text>
+        <text class="photographer-region">{{photographer.region}}</text>
+        <view class="photographer-stats">
+          <text class="stat">接单 {{photographer.orders}}</text>
+          <text class="stat">好评 {{photographer.rating}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <view class="section">
+      <view class="section-title">选择套餐</view>
+      <view class="package-list">
+        <view 
+          class="package-item {{selectedPackage.id === item.id ? 'selected' : ''}}" 
+          wx:for="{{packages}}" 
+          wx:key="id"
+          bindtap="selectPackage"
+          data-id="{{item.id}}"
+        >
+          <view class="package-header">
+            <text class="package-name">{{item.name}}</text>
+            <text class="package-price">¥{{item.price}}</text>
+          </view>
+          <text class="package-desc">{{item.description}}</text>
+          <view class="package-check" wx:if="{{selectedPackage.id === item.id}}">
+            <text class="check-icon">✓</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <view class="section">
+      <view class="section-title">拍摄信息</view>
+      
+      <view class="form-item">
+        <text class="form-label">拍摄日期</text>
+        <picker mode="date" value="{{date}}" start="{{minDate}}" bindchange="onDateChange">
+          <view class="picker-value {{date ? '' : 'placeholder'}}">
+            {{date || '请选择日期'}}
+          </view>
+        </picker>
+      </view>
+      
+      <view class="form-item">
+        <text class="form-label">拍摄时间</text>
+        <picker mode="time" value="{{time}}" bindchange="onTimeChange">
+          <view class="picker-value {{time ? '' : 'placeholder'}}">
+            {{time || '请选择时间'}}
+          </view>
+        </picker>
+      </view>
+      
+      <view class="form-item">
+        <text class="form-label">拍摄地点</text>
+        <input 
+          class="form-input" 
+          placeholder="请输入拍摄地点" 
+          value="{{location}}"
+          bindinput="onLocationInput"
+        />
+      </view>
+      
+      <view class="form-item">
+        <text class="form-label">联系人姓名</text>
+        <input 
+          class="form-input" 
+          placeholder="请输入联系人姓名" 
+          value="{{contactName}}"
+          bindinput="onContactNameInput"
+        />
+      </view>
+      
+      <view class="form-item">
+        <text class="form-label">联系电话</text>
+        <input 
+          class="form-input" 
+          placeholder="请输入联系电话" 
+          value="{{contactPhone}}"
+          bindinput="onContactPhoneInput"
+          type="number"
+        />
+      </view>
+      
+      <view class="form-item">
+        <text class="form-label">备注信息</text>
+        <textarea 
+          class="form-textarea" 
+          placeholder="请输入备注信息（选填）" 
+          value="{{notes}}"
+          bindinput="onNotesInput"
+          maxlength="200"
+        />
+      </view>
+    </view>
+    
+    <view class="section" wx:if="{{selectedPackage}}">
+      <view class="section-title">费用明细</view>
+      <view class="fee-item">
+        <text class="fee-label">套餐价格</text>
+        <text class="fee-value">¥{{selectedPackage.price}}</text>
+      </view>
+      <view class="fee-item">
+        <text class="fee-label">定金（30%）</text>
+        <text class="fee-value highlight">¥{{deposit}}</text>
+      </view>
+      <view class="fee-item">
+        <text class="fee-label">尾款</text>
+        <text class="fee-value">¥{{balance}}</text>
+      </view>
+    </view>
+    
+    <view class="bottom-bar">
+      <view class="total-info" wx:if="{{selectedPackage}}">
+        <text class="total-label">需付定金</text>
+        <text class="total-price">¥{{deposit}}</text>
+      </view>
+      <button 
+        class="submit-btn {{submitting ? 'disabled' : ''}}" 
+        bindtap="submitOrder"
+        disabled="{{submitting}}"
+      >
+        {{submitting ? '提交中...' : '立即预约'}}
+      </button>
+    </view>
+  </view>
+</view>

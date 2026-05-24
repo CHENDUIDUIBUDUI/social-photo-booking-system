@@ -1,0 +1,96 @@
+{
+  "pages": [
+    "pages/login/index",
+    "pages/phone-login/phone-login",
+    "pages/register/register",
+    "pages/welcome/welcome",
+    "pages/role/select",
+    "pages/index/index",
+    "pages/search/index",
+    "pages/discover/index",
+    "pages/photographer/detail",
+    "pages/publish/index",
+    "pages/message/list",
+    "pages/profile/index",
+    "pages/content/detail",
+    "pages/profile/edit",
+    "pages/profile/apply-photographer",
+    "pages/content/list",
+    "pages/content/create",
+    "pages/work/create",
+    "pages/order/list",
+    "pages/order/detail",
+    "pages/order/create",
+    "pages/order/review",
+    "pages/package/list",
+    "pages/package/create",
+    "pages/package/edit",
+    "pages/collection/list",
+    "pages/follow/list",
+    "pages/message/chat",
+    "pages/settings/index",
+    "pages/settings/account",
+    "pages/settings/privacy",
+    "pages/settings/notification",
+    "pages/settings/about",
+    "pages/settings/feedback",
+    "pages/settings/help",
+    "pages/agreement/privacy",
+    "pages/agreement/service"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "约拍平台",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/icons/home.png",
+        "selectedIconPath": "assets/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/discover/index",
+        "text": "发现",
+        "iconPath": "assets/icons/discover.png",
+        "selectedIconPath": "assets/icons/discover-active.png"
+      },
+      {
+        "pagePath": "pages/publish/index",
+        "text": "发布",
+        "iconPath": "assets/icons/Issue.png",
+        "selectedIconPath": "assets/icons/Issue-active.png"
+      },
+      {
+        "pagePath": "pages/message/list",
+        "text": "消息",
+        "iconPath": "assets/icons/news.png",
+        "selectedIconPath": "assets/icons/news-active.png"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的",
+        "iconPath": "assets/icons/my.png",
+        "selectedIconPath": "assets/icons/my-active.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation",
+    "chooseLocation"
+  ],
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": false,
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,228 @@
+<!-- 作品详情页 - 轻透氛围感极简风 -->
+<view class="container">
+  <!-- 顶部返回按钮 -->
+  <view class="nav-bar {{isScrolled ? 'scrolled' : ''}}">
+    <view class="back-btn" bindtap="goBack">
+      <icon type="arrowleft" size="24" />
+    </view>
+    <text class="page-title {{isScrolled ? 'show' : ''}}">作品详情</text>
+    <view class="more-btn" bindtap="showMoreOptions">
+      <icon type="ellipsis" size="24" />
+    </view>
+  </view>
+
+  <!-- 作品大图轮播 -->
+  <swiper class="image-swiper" indicator-dots="true" indicator-active-color="#A8E6CF" indicator-color="rgba(255,255,255,0.5)" autoplay="false" current="{{currentImageIndex}}" bindchange="onImageChange">
+    <swiper-item wx:for="{{work.images}}" wx:key="index" bindtap="previewImage" data-index="{{index}}">
+      <image src="{{item}}" mode="aspectFill" class="work-image" lazy-load="true" />
+    </swiper-item>
+  </swiper>
+  
+  <!-- 图片计数器 -->
+  <view class="image-counter" wx:if="{{work.images.length > 1}}">
+    <text class="counter-text">{{currentImageIndex + 1}} / {{work.images.length}}</text>
+  </view>
+
+  <!-- 作品信息区 -->
+  <view class="info-section">
+    <text class="work-title">{{work.title}}</text>
+    <view class="work-meta">
+      <text class="publish-time">{{work.publishTime}}</text>
+      <view class="shoot-params" wx:if="{{work.shootParams}}">
+        <text class="param-item" wx:for="{{work.shootParams}}" wx:key="index">{{item}}</text>
+      </view>
+    </view>
+    
+    <!-- 作品标签 -->
+    <view class="work-tags" wx:if="{{work.tags && work.tags.length > 0}}">
+      <text class="tag-item" wx:for="{{work.tags}}" wx:key="index">{{item}}</text>
+    </view>
+    
+    <!-- 摄影师信息卡片 -->
+    <view class="photographer-card" bindtap="goToUserProfile">
+      <view class="photographer-info">
+        <image src="{{work.photographer.avatar}}" mode="aspectFill" class="photographer-avatar" />
+        <view class="photographer-detail">
+          <view class="name-row">
+            <text class="photographer-name">{{work.photographer.name}}</text>
+            <view class="verified-badge" wx:if="{{work.photographer.isVerified}}">
+              <text class="iconfont icon-verified"></text>
+            </view>
+          </view>
+          <text class="photographer-desc">{{work.photographer.description}}</text>
+        </view>
+      </view>
+      <button class="follow-btn {{work.photographer.isFollowing ? 'following' : ''}}" catchtap="toggleFollow">
+        {{work.photographer.isFollowing ? '已关注' : '关注'}}
+      </button>
+    </view>
+  </view>
+
+  <!-- 操作栏 -->
+  <view class="action-bar">
+    <view class="action-item" bindtap="toggleLike">
+      <view class="action-icon {{isLiked ? 'active' : ''}}">
+        <icon type="success" size="40rpx" color="{{isLiked ? '#ff4d4f' : '#666'}}" />
+      </view>
+      <text class="action-count {{isLiked ? 'active' : ''}}">{{work.likeCount}}点赞</text>
+    </view>
+    <view class="action-item" bindtap="toggleCollect">
+      <view class="action-icon {{isCollected ? 'active' : ''}}">
+        <icon type="info" size="40rpx" color="{{isCollected ? '#ffd700' : '#666'}}" />
+      </view>
+      <text class="action-count {{isCollected ? 'active' : ''}}">{{work.collectCount}}收藏</text>
+    </view>
+    <view class="action-item" bindtap="handleShare">
+      <view class="action-icon">
+        <icon type="download" size="40rpx" color="#666" />
+      </view>
+      <text class="action-count">分享</text>
+    </view>
+    <view class="action-item" bindtap="handleReport">
+      <view class="action-icon">
+        <icon type="warn" size="40rpx" color="#666" />
+      </view>
+      <text class="action-count">举报</text>
+    </view>
+  </view>
+
+  <!-- 评论区 -->
+  <view class="comment-section">
+    <view class="section-header">
+      <text class="section-title">评论</text>
+      <text class="comment-count">({{work.commentCount}})</text>
+      <view class="sort-options">
+        <text 
+          class="sort-option {{sortType === 'latest' ? 'active' : ''}}" 
+          bindtap="changeSortType" 
+          data-type="latest"
+        >
+          最新
+        </text>
+        <text 
+          class="sort-option {{sortType === 'hottest' ? 'active' : ''}}" 
+          bindtap="changeSortType" 
+          data-type="hottest"
+        >
+          最热
+        </text>
+      </view>
+    </view>
+    
+    <!-- 评论列表 -->
+    <view class="comment-list">
+      <view class="comment-item" wx:for="{{comments}}" wx:key="id">
+        <image src="{{item.avatar}}" mode="aspectFill" class="comment-avatar" />
+        <view class="comment-content">
+          <view class="comment-header">
+            <text class="comment-nickname">{{item.nickname}}</text>
+            <text class="comment-time">{{item.time}}</text>
+          </view>
+          <text class="comment-text">{{item.content}}</text>
+          <view class="comment-actions">
+            <text class="reply-btn" bindtap="replyComment" data-id="{{item.id}}" data-nickname="{{item.nickname}}">回复</text>
+            <view class="like-comment {{item.isLiked ? 'liked' : ''}}" bindtap="likeComment" data-id="{{item.id}}">
+              <icon type="success" size="30rpx" color="{{item.isLiked ? '#ff4d4f' : '#999'}}" />
+              <text class="like-count">{{item.likeCount || '赞'}}</text>
+            </view>
+            <text class="delete-btn" wx:if="{{item.isOwner}}" bindtap="deleteComment" data-id="{{item.id}}">删除</text>
+            <text class="report-btn" bindtap="reportComment" data-id="{{item.id}}">举报</text>
+          </view>
+          
+          <!-- 回复列表 -->
+          <view class="reply-list" wx:if="{{item.replies && item.replies.length > 0}}">
+            <view class="reply-item" wx:for="{{item.replies}}" wx:key="replyId">
+              <text class="reply-nickname">{{item.replyNickname}}：</text>
+              <text class="reply-content">{{item.replyContent}}</text>
+              <view class="reply-actions">
+                <text class="reply-time">{{item.replyTime}}</text>
+                <text class="reply-btn" bindtap="replyComment" data-id="{{item.id}}" data-nickname="{{item.replyNickname}}">回复</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 空评论提示 -->
+    <view class="empty-comments" wx:if="{{comments.length === 0}}">
+      <text class="empty-icon">💬</text>
+      <text class="empty-text">暂无评论，来说点什么吧~</text>
+    </view>
+    
+    <!-- 加载更多提示 -->
+    <view class="load-more" wx:if="{{comments.length > 0}}">
+      <view wx:if="{{isLoadingComments}}" class="loading">
+        <text>加载中...</text>
+      </view>
+      <view wx:elif="{{!hasMoreComments}}" class="no-more">
+        <text>没有更多评论了</text>
+      </view>
+      <view wx:else class="load-more-btn" bindtap="loadMoreComments">
+        <text>加载更多</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部占位 -->
+  <view class="bottom-spacer"></view>
+</view>
+
+<!-- 底部评论输入框 - 毛玻璃效果 -->
+<view class="comment-input-bar {{isInputFocus ? 'focused' : ''}}">
+  <view class="input-wrapper">
+    <input 
+      type="text" 
+      class="comment-input" 
+      placeholder="{{replyTo ? '回复 ' + replyTo + '：' : '写下你的评论...'}}"
+      value="{{commentText}}"
+      bindinput="onCommentInput"
+    />
+    <view class="input-actions">
+      <text class="emoji-btn" bindtap="toggleEmojiPicker">😊</text>
+      <text class="comment-length" wx:if="{{commentText.length > 0}}">
+        {{commentText.length}}/{{maxCommentLength}}
+      </text>
+      <button class="send-btn {{commentText ? 'active' : ''}}" bindtap="sendComment">发送</button>
+    </view>
+  </view>
+</view>
+
+<!-- 表情选择器 -->
+<view class="emoji-picker {{showEmojiPicker ? 'show' : ''}}" bindtap="toggleEmojiPicker">
+  <view class="emoji-content" catchtap="preventBubble">
+    <view class="emoji-grid">
+      <text 
+        wx:for="{{emojis}}" 
+        wx:key="index" 
+        class="emoji-item" 
+        bindtap="selectEmoji" 
+        data-emoji="{{item}}"
+      >
+        {{item}}
+      </text>
+    </view>
+    <view class="emoji-footer">
+      <text class="emoji-cancel" bindtap="toggleEmojiPicker">取消</text>
+    </view>
+  </view>
+</view>
+
+<!-- 更多选项弹窗 -->
+<view class="more-popup {{showMorePopup ? 'show' : ''}}" bindtap="hideMorePopup">
+  <view class="popup-content" catchtap="preventBubble">
+    <view class="popup-item" bindtap="shareToFriend">
+      <icon type="success" size="24" color="#07C160" />
+      <text class="popup-text">分享给好友</text>
+    </view>
+    <view class="popup-item" bindtap="copyLink">
+      <icon type="info" size="24" color="#1890FF" />
+      <text class="popup-text">复制链接</text>
+    </view>
+    <view class="popup-item" bindtap="handleReport">
+      <icon type="warn" size="24" color="#FAAD14" />
+      <text class="popup-text">举报作品</text>
+    </view>
+    <view class="popup-cancel" bindtap="hideMorePopup">取消</view>
+  </view>
+</view>

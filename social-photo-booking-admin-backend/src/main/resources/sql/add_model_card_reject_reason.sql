@@ -1,0 +1,1 @@
+ALTER TABLE model_card ADD COLUMN reject_reason text DEFAULT NULL COMMENT '拒绝原因';

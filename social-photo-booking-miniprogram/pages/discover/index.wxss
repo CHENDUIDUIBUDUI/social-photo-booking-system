@@ -1,0 +1,474 @@
+/* 发现页 - 摄影师列表样式 */
+.container {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  padding-bottom: 60px; /* 为底部Tabbar留出空间 */
+}
+
+/* 顶部搜索栏 */
+.search-bar {
+  padding: 16px;
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.search-input {
+  display: flex;
+  align-items: center;
+  background-color: #f0f4f8;
+  border-radius: 20px;
+  padding: 10px 16px;
+}
+
+.search-icon {
+  font-size: 16px;
+  color: #999;
+  margin-right: 8px;
+}
+
+.search-input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  color: #333;
+}
+
+.search-placeholder {
+  color: #999;
+}
+
+.search-clear {
+  font-size: 14px;
+  color: #999;
+  padding: 4px;
+  margin-left: 8px;
+}
+
+.search-btn {
+  font-size: 14px;
+  color: #52b788;
+  margin-left: 12px;
+  font-weight: 500;
+}
+
+/* 筛选栏 */
+.filter-bar {
+  display: flex;
+  background-color: #fff;
+  padding: 0 16px;
+  height: 44px;
+  align-items: center;
+  border-bottom: 1rpx solid #f0f0f0;
+  position: sticky;
+  top: 70px;
+  z-index: 99;
+}
+
+.filter-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.filter-text {
+  font-size: 14px;
+  color: #666;
+  margin-right: 4px;
+}
+
+.filter-text.active {
+  background: linear-gradient(135deg, #91c788, #52b788);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+}
+
+.filter-arrow {
+  font-size: 12px;
+  color: #999;
+}
+
+/* 加载状态 */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.loading-text {
+  font-size: 14px;
+  color: #999;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 0;
+  text-align: center;
+}
+
+.empty-text {
+  font-size: 14px;
+  color: #999;
+}
+
+/* 摄影师列表 */
+.photographer-list {
+  padding: 16px;
+}
+
+/* 摄影师卡片 */
+.photographer-card {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photographer-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* 卡片头部 */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.photographer-info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 12px;
+  object-fit: cover;
+  background-color: #f0f0f0;
+}
+
+.info {
+  flex: 1;
+}
+
+.name-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-right: 8px;
+}
+
+.certification-tag {
+  background: linear-gradient(135deg, #91c788, #52b788);
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: #999;
+}
+
+.stat-item {
+  margin-right: 4px;
+}
+
+.stat-divider {
+  margin: 0 4px;
+}
+
+/* 关注按钮 */
+.follow-btn {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  height: 28px;
+  line-height: 28px;
+  border: 1rpx solid #d9d9d9;
+  background-color: #fff;
+  color: #666;
+}
+
+.follow-btn[aria-checked="true"] {
+  background: linear-gradient(135deg, #e879f9, #d946ef);
+  color: #fff;
+  border: none;
+}
+
+.follow-btn::after {
+  border: none;
+}
+
+/* 风格标签 */
+.style-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+  gap: 8px;
+}
+
+.tag {
+  background-color: #f0f9ff;
+  padding: 4px 12px;
+  border-radius: 12px;
+}
+
+.tag-text {
+  font-size: 12px;
+  color: #0284c7;
+}
+
+/* 作品网格 - 改为2列 */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.work-image {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  object-fit: cover;
+  background-color: #f0f0f0;
+  transition: transform 0.3s ease;
+}
+
+.work-image:hover {
+  transform: scale(1.02);
+}
+
+/* 筛选面板 */
+.filter-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: flex;
+  align-items: flex-end;
+}
+
+.filter-panel-content {
+  background-color: #fff;
+  border-radius: 20px 20px 0 0;
+  padding: 20px;
+  max-height: 80vh;
+  overflow-y: auto;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.filter-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filter-panel-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+}
+
+.filter-panel-close {
+  font-size: 20px;
+  color: #999;
+}
+
+/* 筛选区块 */
+.filter-section {
+  margin-bottom: 20px;
+}
+
+.filter-section-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+/* 标签选择器 */
+.tag-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-tag {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1rpx solid #e0e0e0;
+  background-color: #f9fafb;
+  transition: all 0.3s ease;
+}
+
+.filter-tag.active {
+  background: linear-gradient(135deg, #91c788, #52b788);
+  color: #fff;
+  border: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(145, 199, 136, 0.3);
+}
+
+.filter-tag-text {
+  font-size: 12px;
+  color: #666;
+}
+
+.filter-tag.active .filter-tag-text {
+  color: #fff;
+}
+
+/* 价格区间 */
+.price-range {
+  padding: 0 10px;
+}
+
+.price-text {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* 区域选择 */
+.region-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.region-item {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1rpx solid #e0e0e0;
+  background-color: #f9fafb;
+  transition: all 0.3s ease;
+}
+
+.region-item.active {
+  background: linear-gradient(135deg, #91c788, #52b788);
+  color: #fff;
+  border: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(145, 199, 136, 0.3);
+}
+
+.region-text {
+  font-size: 12px;
+  color: #666;
+}
+
+.region-item.active .region-text {
+  color: #fff;
+}
+
+/* 排序选项 */
+.sort-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sort-item {
+  padding: 12px 0;
+  border-bottom: 1rpx solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.sort-item.active {
+  color: #0284c7;
+  transform: translateX(8px);
+}
+
+.sort-text {
+  font-size: 14px;
+  color: #666;
+}
+
+.sort-item.active .sort-text {
+  color: #0284c7;
+  font-weight: 500;
+}
+
+/* 确认按钮 */
+.filter-panel-footer {
+  margin-top: 20px;
+}
+
+.confirm-btn {
+  width: 100%;
+  height: 44px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #91c788, #52b788);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.confirm-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(145, 199, 136, 0.4);
+}
+
+.confirm-btn::after {
+  border: none;
+}
+
+/* 响应式设计 */
+@media (max-width: 375px) {
+  .photographer-card {
+    padding: 12px;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .name {
+    font-size: 14px;
+  }
+  
+  .works-grid {
+    gap: 6px;
+  }
+  
+  .work-image {
+    aspect-ratio: 1;
+  }
+}

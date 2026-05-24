@@ -1,0 +1,55 @@
+<!-- 关于我们页面 -->
+<view class="container">
+  <view class="header">
+    <view class="header-left" bindtap="navigateBack">
+      <text class="header-back">←</text>
+    </view>
+    <view class="header-title">关于我们</view>
+    <view class="header-right"></view>
+  </view>
+  
+  <view class="content">
+    <view class="logo-section">
+      <view class="logo-icon">
+        <text class="logo-icon-text">约</text>
+      </view>
+      <text class="app-name">约拍平台</text>
+      <text class="app-version">版本 1.0.0</text>
+    </view>
+    
+    <view class="info-section">
+      <view class="info-item">
+        <text class="info-label">公司名称</text>
+        <text class="info-value">约拍科技有限公司</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">公司地址</text>
+        <text class="info-value">北京市朝阳区</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">联系电话</text>
+        <text class="info-value">400-123-4567</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">电子邮箱</text>
+        <text class="info-value">support@yuepai.com</text>
+      </view>
+    </view>
+    
+    <view class="desc-section">
+      <text class="desc-title">平台简介</text>
+      <text class="desc-text">约拍平台是一个连接摄影师与模特的专业平台，致力于为用户提供优质的约拍服务。平台汇聚了众多优秀的摄影师和模特，用户可以根据自己的需求选择合适的合作伙伴，实现双方的互利共赢。</text>
+    </view>
+    
+    <view class="link-section">
+      <view class="link-item" bindtap="navigateToPrivacy">
+        <text class="link-text">隐私政策</text>
+        <text class="link-arrow">→</text>
+      </view>
+      <view class="link-item" bindtap="navigateToService">
+        <text class="link-text">用户协议</text>
+        <text class="link-arrow">→</text>
+      </view>
+    </view>
+  </view>
+</view>

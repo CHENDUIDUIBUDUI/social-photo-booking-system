@@ -1,0 +1,50 @@
+-- 生成示例内容数据
+USE social_shoot;
+
+-- 检查内容表是否有数据
+SELECT COUNT(*) INTO @content_count FROM content;
+
+-- 如果内容表为空，生成示例数据
+IF @content_count = 0 THEN
+    -- 检查用户表是否有数据
+    SELECT COUNT(*) INTO @user_count FROM user;
+    
+    -- 如果用户表为空，创建示例用户
+    IF @user_count = 0 THEN
+        INSERT INTO user (openid, nickname, avatar, gender, phone, email, role, status, create_time, update_time)
+        VALUES
+        ('openid_1', 'User 1', 'https://randomuser.me/api/portraits/men/1.jpg', 1, '13800138001', 'user1@example.com', 1, 1, NOW(), NOW()),
+        ('openid_2', 'User 2', 'https://randomuser.me/api/portraits/women/2.jpg', 2, '13800138002', 'user2@example.com', 2, 1, NOW(), NOW()),
+        ('openid_3', 'User 3', 'https://randomuser.me/api/portraits/men/3.jpg', 1, '13800138003', 'user3@example.com', 0, 1, NOW(), NOW()),
+        ('openid_4', 'User 4', 'https://randomuser.me/api/portraits/women/4.jpg', 2, '13800138004', 'user4@example.com', 1, 1, NOW(), NOW()),
+        ('openid_5', 'User 5', 'https://randomuser.me/api/portraits/men/5.jpg', 1, '13800138005', 'user5@example.com', 2, 1, NOW(), NOW());
+    END IF;
+    
+    -- 生成示例内容
+    INSERT INTO content (user_id, title, description, images, tags, price, location, type, status, create_time, update_time)
+    VALUES
+    (1, 'Portrait Photography: Beijing Journey', 'This is a set of Portrait style photography works, taken in Beijing. Through the lens, we captured the beautiful moments of Beijing, showing the unique charm of Portrait photography.', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Portrait%20photography%20professional&image_size=landscape_16_9', 'Portrait', 500.00, 'Beijing', 0, 1, NOW(), NOW()),
+    (2, 'Landscape Style: Beautiful Moments in Shanghai', 'Shanghai\'s Landscape photography works, recording the local customs and natural scenery. Each photo tells a unique story, conveying the photographer\'s emotions and perspective.', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Landscape%20photography%20professional&image_size=landscape_16_9', 'Landscape', 600.00, 'Shanghai', 0, 1, NOW(), NOW()),
+    (3, 'Guangzhou Street Photography Collection', 'This set of Street style photography works shows the diversity and beauty of Guangzhou. Through careful composition and light application, it presents unforgettable visual effects.', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Street%20photography%20professional&image_size=landscape_16_9', 'Street', 450.00, 'Guangzhou', 0, 1, NOW(), NOW()),
+    (4, 'Wedding Photography: Cultural Scenery of Shenzhen', 'Shenzhen\'s Wedding photography collection records the pulse of the city and the tranquility of nature. Each photo is an interpretation and expression of Wedding photography art.', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Wedding%20photography%20professional&image_size=landscape_16_9', 'Wedding', 800.00, 'Shenzhen', 0, 1, NOW(), NOW()),
+    (5, 'Hangzhou Commercial Art Photography', 'This is a set of Hangzhou works shot in Commercial style, capturing the unique charm and cultural customs of Hangzhou through the lens, showing the artistic value of Commercial photography.', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Commercial%20photography%20professional&image_size=landscape_16_9', 'Commercial', 700.00, 'Hangzhou', 0, 1, NOW(), NOW()),
+    (1, 'Art Photography: Chengdu Journey', 'This is a set of Art style photography works, taken in Chengdu. Through the lens, we captured the beautiful moments of Chengdu, showing the unique charm of Art photography.', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Art%20photography%20professional&image_size=landscape_16_9', 'Art', 550.00, 'Chengdu', 0, 1, NOW(), NOW()),
+    (2, 'Documentary Style: Beautiful Moments in Wuhan', 'Wuhan\'s Documentary photography works, recording the local customs and natural scenery. Each photo tells a unique story, conveying the photographer\'s emotions and perspective.', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Documentary%20photography%20professional&image_size=landscape_16_9', 'Documentary', 480.00, 'Wuhan', 0, 1, NOW(), NOW()),
+    (3, 'Xi\'an Fashion Photography Collection', 'This set of Fashion style photography works shows the diversity and beauty of Xi\'an. Through careful composition and light application, it presents unforgettable visual effects.', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Fashion%20photography%20professional&image_size=landscape_16_9', 'Fashion', 650.00, 'Xi\'an', 0, 1, NOW(), NOW()),
+    (4, 'Portrait Photography: Beijing Cultural Scenery', 'Beijing\'s Portrait photography collection records the pulse of the city and the tranquility of nature. Each photo is an interpretation and expression of Portrait photography art.', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Portrait%20photography%20professional&image_size=landscape_16_9', 'Portrait', 520.00, 'Beijing', 0, 1, NOW(), NOW()),
+    (5, 'Shanghai Landscape Art Photography', 'This is a set of Shanghai works shot in Landscape style, capturing the unique charm and cultural customs of Shanghai through the lens, showing the artistic value of Landscape photography.', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Landscape%20photography%20professional&image_size=landscape_16_9', 'Landscape', 580.00, 'Shanghai', 0, 1, NOW(), NOW()),
+    (1, 'Street Photography: Guangzhou Journey', 'This is a set of Street style photography works, taken in Guangzhou. Through the lens, we captured the beautiful moments of Guangzhou, showing the unique charm of Street photography.', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Street%20photography%20professional&image_size=landscape_16_9', 'Street', 420.00, 'Guangzhou', 0, 1, NOW(), NOW()),
+    (2, 'Wedding Style: Beautiful Moments in Shenzhen', 'Shenzhen\'s Wedding photography works, recording the local customs and natural scenery. Each photo tells a unique story, conveying the photographer\'s emotions and perspective.', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Wedding%20photography%20professional&image_size=landscape_16_9', 'Wedding', 780.00, 'Shenzhen', 0, 1, NOW(), NOW()),
+    (3, 'Hangzhou Commercial Photography Collection', 'This set of Commercial style photography works shows the diversity and beauty of Hangzhou. Through careful composition and light application, it presents unforgettable visual effects.', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Commercial%20photography%20professional&image_size=landscape_16_9', 'Commercial', 680.00, 'Hangzhou', 0, 1, NOW(), NOW()),
+    (4, 'Art Photography: Chengdu Cultural Scenery', 'Chengdu\'s Art photography collection records the pulse of the city and the tranquility of nature. Each photo is an interpretation and expression of Art photography art.', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Art%20photography%20professional&image_size=landscape_16_9', 'Art', 530.00, 'Chengdu', 0, 1, NOW(), NOW()),
+    (5, 'Wuhan Documentary Art Photography', 'This is a set of Wuhan works shot in Documentary style, capturing the unique charm and cultural customs of Wuhan through the lens, showing the artistic value of Documentary photography.', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Documentary%20photography%20professional&image_size=landscape_16_9', 'Documentary', 490.00, 'Wuhan', 0, 1, NOW(), NOW()),
+    (1, 'Fashion Photography: Xi\'an Journey', 'This is a set of Fashion style photography works, taken in Xi\'an. Through the lens, we captured the beautiful moments of Xi\'an, showing the unique charm of Fashion photography.', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Fashion%20photography%20professional&image_size=landscape_16_9', 'Fashion', 630.00, 'Xi\'an', 0, 1, NOW(), NOW()),
+    (2, 'Portrait Style: Beautiful Moments in Beijing', 'Beijing\'s Portrait photography works, recording the local customs and natural scenery. Each photo tells a unique story, conveying the photographer\'s emotions and perspective.', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Portrait%20photography%20professional&image_size=landscape_16_9', 'Portrait', 510.00, 'Beijing', 0, 1, NOW(), NOW()),
+    (3, 'Shanghai Landscape Photography Collection', 'This set of Landscape style photography works shows the diversity and beauty of Shanghai. Through careful composition and light application, it presents unforgettable visual effects.', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Landscape%20photography%20professional&image_size=landscape_16_9', 'Landscape', 590.00, 'Shanghai', 0, 1, NOW(), NOW()),
+    (4, 'Street Photography: Guangzhou Cultural Scenery', 'Guangzhou\'s Street photography collection records the pulse of the city and the tranquility of nature. Each photo is an interpretation and expression of Street photography art.', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Street%20photography%20professional&image_size=landscape_16_9', 'Street', 440.00, 'Guangzhou', 0, 1, NOW(), NOW()),
+    (5, 'Shenzhen Wedding Art Photography', 'This is a set of Shenzhen works shot in Wedding style, capturing the unique charm and cultural customs of Shenzhen through the lens, showing the artistic value of Wedding photography.', 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Wedding%20photography%20professional&image_size=landscape_16_9', 'Wedding', 790.00, 'Shenzhen', 0, 1, NOW(), NOW());
+    
+    SELECT 'Sample content generated successfully' AS message;
+ELSE
+    SELECT CONCAT('Content table already has ', @content_count, ' items, no need to generate sample data') AS message;
+END IF;

@@ -1,0 +1,47 @@
+<!-- 隐私设置页面 -->
+<view class="container">
+  <view class="header">
+    <view class="header-left" bindtap="navigateBack">
+      <text class="header-back">←</text>
+    </view>
+    <view class="header-title">隐私设置</view>
+    <view class="header-right"></view>
+  </view>
+  
+  <view class="content">
+    <!-- 隐私设置 -->
+    <view class="section">
+      <view class="section-content">
+        <view class="setting-item">
+          <text class="setting-label">公开个人信息</text>
+          <switch checked="{{privacy.publicProfile}}" bindchange="togglePublicProfile" />
+        </view>
+        <view class="setting-item">
+          <text class="setting-label">允许陌生人查看我的作品</text>
+          <switch checked="{{privacy.showWorks}}" bindchange="toggleShowWorks" />
+        </view>
+        <view class="setting-item">
+          <text class="setting-label">允许陌生人给我发消息</text>
+          <switch checked="{{privacy.allowMessage}}" bindchange="toggleAllowMessage" />
+        </view>
+        <view class="setting-item">
+          <text class="setting-label">允许陌生人关注我</text>
+          <switch checked="{{privacy.allowFollow}}" bindchange="toggleAllowFollow" />
+        </view>
+      </view>
+    </view>
+    
+    <!-- 黑名单 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">黑名单</text>
+      </view>
+      <view class="section-content">
+        <view class="setting-item" bindtap="navigateToBlacklist">
+          <text class="setting-label">黑名单管理</text>
+          <text class="setting-arrow">→</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

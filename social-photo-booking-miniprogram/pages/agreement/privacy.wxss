@@ -1,0 +1,92 @@
+/* 协议页面样式 */
+.agreement-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #FDFDFD;
+}
+
+/* 顶部导航栏 */
+.header {
+  display: flex;
+  align-items: center;
+  height: 88rpx;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid #F1F3F5;
+  padding: 0 32rpx;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.back-button {
+  width: 44rpx;
+  height: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 32rpx;
+}
+
+.back-icon {
+  font-size: 32rpx;
+  color: #212529;
+}
+
+.header-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #212529;
+  flex: 1;
+  text-align: center;
+  margin-right: 76rpx; /* 与左侧返回按钮宽度对应 */
+}
+
+/* 内容区域 */
+.content {
+  flex: 1;
+  padding: 32rpx;
+  overflow-y: auto;
+}
+
+.section {
+  margin-bottom: 40rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #212529;
+  margin-bottom: 16rpx;
+  line-height: 38rpx;
+}
+
+.section-content {
+  font-size: 24rpx;
+  color: #495057;
+  line-height: 36rpx;
+}
+
+.list-item {
+  margin-top: 12rpx;
+  margin-left: 24rpx;
+}
+
+/* 滚动条样式 */
+.content::-webkit-scrollbar {
+  width: 4rpx;
+}
+
+.content::-webkit-scrollbar-track {
+  background: #F1F3F5;
+  border-radius: 2rpx;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: #A8E6CF;
+  border-radius: 2rpx;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: #D4A5FF;
+}

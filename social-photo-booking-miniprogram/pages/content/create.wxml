@@ -1,0 +1,108 @@
+<!-- 发布约拍需求页面 -->
+<view class="container">
+  <!-- 表单区域 -->
+  <view class="form-container">
+    <!-- 拍摄类型 -->
+    <view class="form-item">
+      <view class="form-label">拍摄类型</view>
+      <view class="radio-group">
+        <view 
+          wx:for="{{shootingTypes}}" 
+          wx:key="index" 
+          class="radio-item {{selectedShootingType === item.value ? 'selected' : ''}}" 
+          bindtap="selectShootingType" 
+          data-value="{{item.value}}"
+        >
+          <text class="radio-text">{{item.label}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 拍摄风格 -->
+    <view class="form-item">
+      <view class="form-label">拍摄风格</view>
+      <view class="checkbox-group">
+        <view 
+          wx:for="{{styles}}" 
+          wx:key="index" 
+          class="checkbox-item {{isStyleSelected(item.value) ? 'selected' : ''}}" 
+          bindtap="toggleStyle" 
+          data-value="{{item.value}}"
+        >
+          <text class="checkbox-text">{{item.label}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 拍摄时间 -->
+    <view class="form-item">
+      <view class="form-label">拍摄时间</view>
+      <view class="date-input-container">
+        <input 
+          class="date-input" 
+          value="{{selectedDate}}" 
+          bindinput="bindDateInput" 
+          placeholder="请输入拍摄时间，格式：YYYY-MM-DD" 
+          maxlength="10" 
+        />
+        <button class="date-picker-btn" bindtap="showDatePicker">选择</button>
+      </view>
+    </view>
+    
+    <!-- 拍摄地点 -->
+    <view class="form-item">
+      <view class="form-label">拍摄地点</view>
+      <input 
+        class="form-input" 
+        value="{{location}}" 
+        bindinput="bindLocationInput" 
+        placeholder="请输入拍摄地点" 
+        maxlength="100" 
+      />
+    </view>
+    
+    <!-- 预算金额 -->
+    <view class="form-item">
+      <view class="form-label">预算金额</view>
+      <input 
+        class="form-input" 
+        value="{{budget}}" 
+        bindinput="bindBudgetInput" 
+        placeholder="请输入预算金额" 
+        type="number" 
+      />
+    </view>
+    
+    <!-- 需求详情 -->
+    <view class="form-item">
+      <view class="form-label">需求详情</view>
+      <textarea 
+        class="form-textarea" 
+        value="{{description}}" 
+        bindinput="bindDescriptionInput" 
+        placeholder="请详细描述您的拍摄需求，包括拍摄主题、服装要求、妆容要求等" 
+        maxlength="500" 
+      />
+    </view>
+    
+    <!-- 配图上传 -->
+    <view class="form-item">
+      <view class="form-label">参考图片</view>
+      <view class="image-uploader">
+        <view wx:for="{{images}}" wx:key="index" class="image-item">
+          <image class="image" src="{{item}}"></image>
+          <text class="image-delete" bindtap="deleteImage" data-index="{{index}}">×</text>
+        </view>
+        <view wx:if="{{images.length < 9}}" class="image-add" bindtap="chooseImage">
+          <text class="image-add-icon">📷</text>
+          <text class="image-add-text">上传参考图片，最多9张</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 底部发布按钮 -->
+  <view class="bottom-button">
+    <button class="submit-button" bindtap="submitContent">发布需求</button>
+  </view>
+</view>

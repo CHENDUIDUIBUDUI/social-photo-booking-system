@@ -1,0 +1,1 @@
+SELECT COUNT(*) AS photographer_count FROM photographer;

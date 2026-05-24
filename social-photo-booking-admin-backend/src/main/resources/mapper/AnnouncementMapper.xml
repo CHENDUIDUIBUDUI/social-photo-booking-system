@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.socialshoot.admin.mapper.AnnouncementMapper">
+    <select id="selectAnnouncements" parameterType="map" resultType="com.socialshoot.admin.entity.Announcement">
+        SELECT id, title, content, author_id as authorId, status, create_time as createTime, update_time as updateTime
+        FROM announcement
+        WHERE 1=1
+        <if test="id != null">
+            AND id = #{id}
+        </if>
+        <if test="title != null and title != ''">
+            AND title LIKE CONCAT('%', #{title}, '%')
+        </if>
+        ORDER BY create_time DESC
+        LIMIT #{pageNum}, #{pageSize}
+    </select>
+    <select id="countAnnouncements" parameterType="map" resultType="int">
+        SELECT COUNT(*)
+        FROM announcement
+        WHERE 1=1
+        <if test="id != null">
+            AND id = #{id}
+        </if>
+        <if test="title != null and title != ''">
+            AND title LIKE CONCAT('%', #{title}, '%')
+        </if>
+    </select>
+    <select id="selectAnnouncementById" parameterType="long" resultType="com.socialshoot.admin.entity.Announcement">
+        SELECT id, title, content, author_id as authorId, status, create_time as createTime, update_time as updateTime
+        FROM announcement
+        WHERE id = #{id}
+    </select>
+    <insert id="insertAnnouncement" parameterType="com.socialshoot.admin.entity.Announcement">
+        INSERT INTO announcement (title, content, author_id, status, create_time, update_time)
+        VALUES (#{title}, #{content}, #{authorId}, #{status}, NOW(), NOW())
+    </insert>
+    <update id="updateAnnouncement" parameterType="com.socialshoot.admin.entity.Announcement">
+        UPDATE announcement
+        SET title = #{title},
+            content = #{content},
+            author_id = #{authorId},
+            status = #{status},
+            update_time = NOW()
+        WHERE id = #{id}
+    </update>
+    <delete id="deleteAnnouncement" parameterType="long">
+        DELETE FROM announcement
+        WHERE id = #{id}
+    </delete>
+</mapper>

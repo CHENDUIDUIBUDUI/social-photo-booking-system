@@ -1,0 +1,46 @@
+/* publish/index.wxss */
+.container {
+  padding: 16px;
+  min-height: 100vh;
+  background-color: #FDFDFD;
+}
+
+.publish-options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.option-card {
+  display: flex;
+  align-items: center;
+  padding: 24px;
+  background: #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px 0 rgba(31, 38, 135, 0.05);
+  transition: all 0.3s ease;
+}
+
+.option-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px 0 rgba(31, 38, 135, 0.1);
+}
+
+.option-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #A8E6CF 0%, #D4A5FF 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-right: 16px;
+}
+
+.option-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #212529;
+}

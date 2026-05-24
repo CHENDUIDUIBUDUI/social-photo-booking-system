@@ -1,0 +1,53 @@
+<!-- 帮助中心页面 -->
+<view class="container">
+  <view class="header">
+    <view class="header-left" bindtap="navigateBack">
+      <text class="header-back">←</text>
+    </view>
+    <view class="header-title">帮助中心</view>
+    <view class="header-right"></view>
+  </view>
+  
+  <view class="content">
+    <!-- 搜索框 -->
+    <view class="search-section">
+      <input class="search-input" 
+             value="{{searchKeyword}}" 
+             bindinput="bindSearchInput" 
+             placeholder="搜索问题" />
+    </view>
+    
+    <!-- 常见问题 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">常见问题</text>
+      </view>
+      <view class="section-content">
+        <view wx:for="{{faqList}}" wx:key="{{item.id}}" 
+              class="faq-item" 
+              bindtap="toggleFaq" data-id="{{item.id}}">
+          <view class="faq-question">
+            <text class="faq-text">{{item.question}}</text>
+            <text class="faq-icon {{item.expanded ? 'expanded' : ''}}">▼</text>
+          </view>
+          <view wx:if="{{item.expanded}}" class="faq-answer">
+            <text class="answer-text">{{item.answer}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 联系客服 -->
+    <view class="contact-section">
+      <view class="contact-title">还有问题？</view>
+      <view class="contact-buttons">
+        <button class="contact-button" bindtap="contactOnline">
+          在线客服
+        </button>
+        <button class="contact-button" bindtap="contactPhone">
+          电话客服
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,155 @@
+/* 帮助中心页面样式 */
+
+.container {
+  flex: 1;
+  background-color: #f5f5f5;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100rpx;
+  background-color: #fff;
+  padding: 0 30rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.header-left {
+  width: 60rpx;
+}
+
+.header-back {
+  font-size: 40rpx;
+  color: #333;
+}
+
+.header-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.header-right {
+  width: 60rpx;
+}
+
+.content {
+  flex: 1;
+  padding: 20rpx;
+}
+
+.search-section {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+  font-size: 28rpx;
+  color: #333;
+  width: 100%;
+  padding: 15rpx;
+  background-color: #f5f5f5;
+  border-radius: 8rpx;
+}
+
+.section {
+  background-color: #fff;
+  border-radius: 12rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  margin-bottom: 20rpx;
+}
+
+.section-header {
+  padding: 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.section-content {
+  padding: 0 20rpx;
+}
+
+.faq-item {
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25rpx 0;
+}
+
+.faq-text {
+  font-size: 28rpx;
+  color: #333;
+  flex: 1;
+}
+
+.faq-icon {
+  font-size: 24rpx;
+  color: #909399;
+  margin-left: 20rpx;
+  transition: transform 0.3s;
+}
+
+.faq-icon.expanded {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  padding: 0 0 25rpx 0;
+}
+
+.answer-text {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+.contact-section {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 40rpx;
+  text-align: center;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.contact-title {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 30rpx;
+}
+
+.contact-buttons {
+  display: flex;
+  gap: 20rpx;
+}
+
+.contact-button {
+  flex: 1;
+  height: 80rpx;
+  background-color: #1989fa;
+  color: #fff;
+  font-size: 28rpx;
+  border-radius: 8rpx;
+}
+
+.contact-button::after {
+  border: none;
+}

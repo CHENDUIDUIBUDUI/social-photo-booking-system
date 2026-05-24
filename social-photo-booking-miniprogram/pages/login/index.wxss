@@ -1,0 +1,289 @@
+.login-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 0 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* 顶部Logo区域 */
+.logo-section {
+  margin-top: 120rpx;
+  margin-bottom: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.logo-icon {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #A8E6CF 0%, #D4A5FF 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32rpx;
+  box-shadow: 0 12rpx 48rpx rgba(0, 0, 0, 0.15);
+  animation: breathe 4s ease-in-out infinite;
+}
+
+.logo-icon-text {
+  font-size: 80rpx;
+  font-weight: 700;
+  color: #fff;
+}
+
+.logo-title {
+  font-size: 64rpx;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16rpx;
+  text-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.2);
+  letter-spacing: 4rpx;
+}
+
+.logo-subtitle {
+  font-size: 32rpx;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.15);
+  letter-spacing: 2rpx;
+}
+
+/* 登录区域 */
+.login-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  flex: 1;
+  justify-content: center;
+}
+
+.wechat-login-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 32rpx;
+}
+
+/* 用户信息区域 */
+.user-info-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 80rpx;
+}
+
+.avatar-container {
+  margin-bottom: 32rpx;
+}
+
+.avatar {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  border: 6rpx solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.15);
+}
+
+.user-name {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 16rpx;
+  text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.15);
+}
+
+/* 登录按钮 */
+.login-button-section {
+  margin-bottom: 48rpx;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.login-button {
+  width: 90vw;
+  height: 100rpx;
+  background: linear-gradient(90deg, #A8E6CF 0%, #D4A5FF 100%);
+  border: none;
+  border-radius: 50rpx;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 12rpx 48rpx rgba(212, 165, 255, 0.4);
+  transition: all 0.3s ease;
+  letter-spacing: 4rpx;
+}
+
+.login-button-hover {
+  transform: translateY(-4rpx);
+  box-shadow: 0 16rpx 64rpx rgba(212, 165, 255, 0.5);
+}
+
+/* 其他登录方式 */
+.other-login-section {
+  margin-bottom: 80rpx;
+  text-align: center;
+}
+
+.other-login-link {
+  display: inline-block;
+  margin-right: 40rpx;
+}
+
+.other-login-link:last-child {
+  margin-right: 0;
+}
+
+.other-login-text {
+  font-size: 32rpx;
+  color: #fff;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.15);
+}
+
+.other-login-text:hover {
+  text-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.2);
+}
+
+/* 错误提示 */
+.error-message {
+  margin-top: 32rpx;
+  padding: 20rpx 28rpx;
+  background-color: rgba(255, 243, 243, 0.2);
+  border-radius: 16rpx;
+  border-left: 6rpx solid #FF8A80;
+  z-index: 2;
+}
+
+.error-text {
+  font-size: 28rpx;
+  color: #FF8A80;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* 底部说明 */
+.bottom-section {
+  margin-bottom: 60rpx;
+  text-align: center;
+  z-index: 2;
+}
+
+.bottom-text {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
+}
+
+.bottom-link {
+  display: inline-block;
+  margin: 0 12rpx;
+}
+
+.bottom-link-text {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.bottom-link-text:hover {
+  color: #fff;
+  text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.15);
+}
+
+/* 响应式 */
+@media (max-width: 375px) {
+  .login-container {
+    padding: 0 24rpx;
+  }
+  
+  .logo-section {
+    margin-top: 100rpx;
+    margin-bottom: 80rpx;
+  }
+  
+  .logo-icon {
+    width: 140rpx;
+    height: 140rpx;
+  }
+  
+  .logo-icon-text {
+    font-size: 70rpx;
+  }
+  
+  .logo-title {
+    font-size: 56rpx;
+  }
+  
+  .logo-subtitle {
+    font-size: 28rpx;
+  }
+  
+  .avatar {
+    width: 140rpx;
+    height: 140rpx;
+  }
+  
+  .user-name {
+    font-size: 32rpx;
+  }
+  
+  .login-button {
+    width: 95vw;
+    height: 90rpx;
+    font-size: 32rpx;
+  }
+  
+  .other-login-text {
+    font-size: 28rpx;
+  }
+  
+  .bottom-text,
+  .bottom-link-text {
+    font-size: 20rpx;
+  }
+}
+
+/* 呼吸动画 */
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* 漂浮动画 */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-30rpx) scale(1.1);
+  }
+}
+
+/* 流体渐变流动动画 */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

@@ -1,0 +1,172 @@
+/* review.wxss */
+.container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding-bottom: 100rpx;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx 32rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #eee;
+}
+
+.header-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.header-right {
+  width: 80rpx;
+}
+
+.content {
+  padding: 24rpx;
+}
+
+.order-card {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.order-id {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.order-price {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #e74c3c;
+}
+
+.order-info {
+  display: flex;
+  align-items: center;
+}
+
+.order-label {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.order-value {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.rating-section {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.title-text {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.required {
+  color: #e74c3c;
+  margin-left: 8rpx;
+}
+
+.rating-stars {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 16rpx;
+}
+
+.star {
+  width: 72rpx;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16rpx;
+}
+
+.star-icon {
+  font-size: 56rpx;
+  color: #ddd;
+  transition: color 0.2s;
+}
+
+.star.active .star-icon {
+  color: #ffd700;
+}
+
+.rating-text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.comment-section {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.comment-input {
+  width: 100%;
+  height: 200rpx;
+  padding: 20rpx;
+  background-color: #f9f9f9;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.word-count {
+  display: block;
+  text-align: right;
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 12rpx;
+}
+
+.submit-section {
+  padding: 24rpx;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 88rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 500;
+  border-radius: 44rpx;
+  border: none;
+}
+
+.submit-btn.disabled {
+  background: #ccc;
+}
+
+.submit-btn:active {
+  opacity: 0.8;
+}

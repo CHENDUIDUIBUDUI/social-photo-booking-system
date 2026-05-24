@@ -1,0 +1,35 @@
+<!-- 聊天页面 -->
+<view class="container">
+  <view class="header">
+    <view class="header-left" bindtap="navigateBack">
+      <text class="header-back">←</text>
+    </view>
+    <view class="header-center">
+      <text class="header-title">{{chatUser.name}}</text>
+    </view>
+    <view class="header-right">
+      <text class="header-more">⋯</text>
+    </view>
+  </view>
+  
+  <view class="chat-content">
+    <scroll-view class="message-list" scroll-y scroll-into-view="{{toView}}" scroll-with-animation>
+      <view wx:for="{{messages}}" wx:key="{{item.id}}" id="msg-{{item.id}}" class="message-item {{item.isSelf ? 'self' : 'other'}}">
+        <image wx:if="{{!item.isSelf}}" class="avatar" src="{{item.avatar}}"></image>
+        <view class="message-content">
+          <text class="message-text">{{item.content}}</text>
+          <text class="message-time">{{item.time}}</text>
+        </view>
+        <image wx:if="{{item.isSelf}}" class="avatar" src="{{item.avatar}}"></image>
+      </view>
+    </scroll-view>
+  </view>
+  
+  <view class="chat-input">
+    <view class="input-container">
+      <text class="input-icon">+</text>
+      <input class="input-field" value="{{inputText}}" bindinput="bindInputInput" placeholder="输入消息..." confirm-type="send" bindconfirm="sendMessage" />
+      <button class="send-button" bindtap="sendMessage">发送</button>
+    </view>
+  </view>
+</view>

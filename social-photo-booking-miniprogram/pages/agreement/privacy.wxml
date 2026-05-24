@@ -1,0 +1,70 @@
+<view class="agreement-container">
+  <view class="header">
+    <view class="back-button" bindtap="goBack">
+      <text class="back-icon">←</text>
+    </view>
+    <view class="header-title">隐私政策</view>
+  </view>
+  
+  <view class="content">
+    <view class="section">
+      <view class="section-title">1. 隐私政策的适用范围</view>
+      <view class="section-content">
+        <text>本隐私政策适用于约拍平台（以下简称"平台"）提供的所有服务。</text>
+      </view>
+    </view>
+    
+    <view class="section">
+      <view class="section-title">2. 我们收集的信息</view>
+      <view class="section-content">
+        <text>我们可能收集以下信息：</text>
+        <view class="list-item">• 您的微信头像、昵称等基本信息</view>
+        <view class="list-item">• 您的联系方式（如手机号）</view>
+        <view class="list-item">• 您的地理位置信息</view>
+        <view class="list-item">• 您的使用记录和行为数据</view>
+      </view>
+    </view>
+    
+    <view class="section">
+      <view class="section-title">3. 信息的使用</view>
+      <view class="section-content">
+        <text>我们使用收集的信息用于：</text>
+        <view class="list-item">• 提供和改进平台服务</view>
+        <view class="list-item">• 个性化您的使用体验</view>
+        <view class="list-item">• 与您沟通和联系</view>
+        <view class="list-item">• 保护平台和用户的安全</view>
+      </view>
+    </view>
+    
+    <view class="section">
+      <view class="section-title">4. 信息的共享</view>
+      <view class="section-content">
+        <text>我们不会向第三方共享您的个人信息，除非：</text>
+        <view class="list-item">• 获得您的明确授权</view>
+        <view class="list-item">• 法律要求或监管需要</view>
+        <view class="list-item">• 保护平台和用户的合法权益</view>
+      </view>
+    </view>
+    
+    <view class="section">
+      <view class="section-title">5. 信息的保护</view>
+      <view class="section-content">
+        <text>我们采取各种安全措施保护您的个人信息，包括加密存储、访问控制等。</text>
+      </view>
+    </view>
+    
+    <view class="section">
+      <view class="section-title">6. 隐私政策的修改</view>
+      <view class="section-content">
+        <text>我们可能会不时修改本隐私政策，修改后的政策将在平台上公布。</text>
+      </view>
+    </view>
+    
+    <view class="section">
+      <view class="section-title">7. 联系我们</view>
+      <view class="section-content">
+        <text>如果您对本隐私政策有任何疑问，请联系我们。</text>
+      </view>
+    </view>
+  </view>
+</view>

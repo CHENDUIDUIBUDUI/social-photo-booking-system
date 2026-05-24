@@ -1,0 +1,41 @@
+<!-- 套餐管理页面 -->
+<view class="container">
+  <!-- 创建套餐按钮 -->
+  <view class="create-button-container">
+    <button class="create-button" bindtap="navigateToCreate">
+      <view class="create-icon">+</view>
+      <text class="create-text">创建套餐</text>
+    </button>
+  </view>
+  
+  <!-- 套餐列表 -->
+  <view class="package-list">
+    <view wx:for="{{packages}}" wx:key="id" class="package-item">
+      <view class="package-header">
+        <text class="package-name">{{item.name}}</text>
+        <text class="package-price">¥{{item.price}}</text>
+      </view>
+      <text class="package-description">{{item.description}}</text>
+      <view class="package-features">
+        <view wx:for="{{item.featuresArray}}" wx:key="index" class="feature-tag">
+          {{item}}
+        </view>
+      </view>
+      <view class="package-actions">
+        <button class="action-btn edit-btn" bindtap="navigateToEdit" data-id="{{item.id}}">
+          编辑
+        </button>
+        <button class="action-btn delete-btn" bindtap="deletePackage" data-id="{{item.id}}">
+          删除
+        </button>
+      </view>
+    </view>
+    
+    <!-- 空状态 -->
+    <view wx:if="{{packages.length === 0}}" class="empty-state">
+      <view class="empty-icon">📦</view>
+      <text class="empty-text">暂无套餐</text>
+      <text class="empty-hint">点击右上角添加套餐</text>
+    </view>
+  </view>
+</view>

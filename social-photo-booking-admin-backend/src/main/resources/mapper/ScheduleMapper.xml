@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.socialshoot.admin.mapper.ScheduleMapper">
+    <insert id="insert" parameterType="com.socialshoot.admin.entity.Schedule">
+        INSERT INTO schedule (photographer_id, start_time, end_time, status, order_id)
+        VALUES (#{photographerId}, #{startTime}, #{endTime}, #{status}, #{orderId})
+    </insert>
+
+    <select id="findById" parameterType="java.lang.Long" resultType="com.socialshoot.admin.entity.Schedule">
+        SELECT * FROM schedule WHERE id = #{id}
+    </select>
+
+    <select id="findByPhotographerId" parameterType="java.lang.Long" resultType="com.socialshoot.admin.entity.Schedule">
+        SELECT * FROM schedule WHERE photographer_id = #{photographerId}
+    </select>
+
+    <select id="findByOrderId" parameterType="java.lang.Long" resultType="com.socialshoot.admin.entity.Schedule">
+        SELECT * FROM schedule WHERE order_id = #{orderId}
+    </select>
+
+    <update id="updateStatus">
+        UPDATE schedule SET status = #{status} WHERE id = #{id}
+    </update>
+
+    <update id="updateOrderId">
+        UPDATE schedule SET order_id = #{orderId} WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM schedule WHERE id = #{id}
+    </delete>
+</mapper>

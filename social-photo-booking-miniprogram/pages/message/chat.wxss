@@ -1,0 +1,157 @@
+/* 聊天页面样式 */
+
+.container {
+  flex: 1;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100rpx;
+  background-color: #fff;
+  padding: 0 30rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.header-left {
+  width: 60rpx;
+}
+
+.header-back {
+  font-size: 40rpx;
+  color: #333;
+}
+
+.header-center {
+  flex: 1;
+  text-align: center;
+}
+
+.header-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.header-right {
+  width: 60rpx;
+  text-align: right;
+}
+
+.header-more {
+  font-size: 40rpx;
+  color: #333;
+}
+
+.chat-content {
+  flex: 1;
+  overflow: hidden;
+}
+
+.message-list {
+  height: 100%;
+  padding: 20rpx;
+}
+
+.message-item {
+  display: flex;
+  margin-bottom: 30rpx;
+  align-items: flex-start;
+}
+
+.message-item.self {
+  flex-direction: row-reverse;
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.message-item.self .avatar {
+  margin-left: 20rpx;
+}
+
+.message-item.other .avatar {
+  margin-right: 20rpx;
+}
+
+.message-content {
+  max-width: 500rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-item.self .message-content {
+  align-items: flex-end;
+}
+
+.message-item.other .message-content {
+  align-items: flex-start;
+}
+
+.message-text {
+  background-color: #fff;
+  padding: 20rpx;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.message-item.self .message-text {
+  background-color: #1989fa;
+  color: #fff;
+}
+
+.message-time {
+  font-size: 20rpx;
+  color: #999;
+  margin-top: 10rpx;
+}
+
+.chat-input {
+  background-color: #fff;
+  padding: 20rpx;
+  box-shadow: 0 -2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.input-icon {
+  font-size: 40rpx;
+  color: #666;
+}
+
+.input-field {
+  flex: 1;
+  height: 80rpx;
+  background-color: #f5f5f5;
+  border-radius: 40rpx;
+  padding: 0 30rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.send-button {
+  padding: 15rpx 40rpx;
+  background-color: #1989fa;
+  color: #fff;
+  font-size: 28rpx;
+  border-radius: 40rpx;
+}
+
+.send-button::after {
+  border: none;
+}

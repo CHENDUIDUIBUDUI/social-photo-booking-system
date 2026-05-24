@@ -1,0 +1,152 @@
+<!-- 发布作品页面 -->
+<view class="container">
+
+  
+  <!-- 表单区域 -->
+  <view class="form-container">
+    <!-- 作品标题 -->
+    <view class="form-item">
+      <view class="form-label">作品标题</view>
+      <input 
+        class="form-input" 
+        value="{{title}}" 
+        bindinput="bindTitleInput" 
+        placeholder="请输入作品标题" 
+        maxlength="50" 
+      />
+    </view>
+    
+    <!-- 作品分类 -->
+    <view class="form-item">
+      <view class="form-label">作品分类</view>
+      <view class="radio-group">
+        <view 
+          wx:for="{{categories}}" 
+          wx:key="index" 
+          class="radio-item {{selectedCategory === item.value ? 'selected' : ''}}" 
+          bindtap="selectCategory" 
+          data-value="{{item.value}}"
+        >
+          <text class="radio-text">{{item.label}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 拍摄风格 -->
+    <view class="form-item">
+      <view class="form-label">拍摄风格</view>
+      <view class="checkbox-group">
+        <view 
+          wx:for="{{styleList}}" 
+          wx:key="index" 
+          class="checkbox-item {{item.selected ? 'selected' : ''}}" 
+          bindtap="toggleStyle" 
+          data-value="{{item.value}}"
+        >
+          <text class="checkbox-text">{{item.label}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 拍摄地点 -->
+    <view class="form-item">
+      <view class="form-label">拍摄地点</view>
+      <input 
+        class="form-input" 
+        value="{{location}}" 
+        bindinput="bindLocationInput" 
+        placeholder="请输入拍摄地点" 
+        maxlength="100" 
+      />
+    </view>
+    
+    <!-- 拍摄参数 -->
+    <view class="form-item">
+      <view class="form-label">拍摄参数</view>
+      <view class="params-container">
+        <view class="param-item">
+          <text class="param-label">相机</text>
+          <input 
+            class="param-input" 
+            value="{{camera}}" 
+            bindinput="bindCameraInput" 
+            placeholder="如：Canon R5" 
+            maxlength="30" 
+          />
+        </view>
+        <view class="param-item">
+          <text class="param-label">镜头</text>
+          <input 
+            class="param-input" 
+            value="{{lens}}" 
+            bindinput="bindLensInput" 
+            placeholder="如：50mm f/1.4" 
+            maxlength="30" 
+          />
+        </view>
+        <view class="param-item">
+          <text class="param-label">光圈</text>
+          <input 
+            class="param-input" 
+            value="{{aperture}}" 
+            bindinput="bindApertureInput" 
+            placeholder="如：f/1.4" 
+            maxlength="10" 
+          />
+        </view>
+        <view class="param-item">
+          <text class="param-label">快门</text>
+          <input 
+            class="param-input" 
+            value="{{shutter}}" 
+            bindinput="bindShutterInput" 
+            placeholder="如：1/125s" 
+            maxlength="10" 
+          />
+        </view>
+        <view class="param-item">
+          <text class="param-label">ISO</text>
+          <input 
+            class="param-input" 
+            value="{{iso}}" 
+            bindinput="bindIsoInput" 
+            placeholder="如：100" 
+            maxlength="10" 
+          />
+        </view>
+      </view>
+    </view>
+    
+    <!-- 作品描述 -->
+    <view class="form-item">
+      <view class="form-label">作品描述</view>
+      <textarea 
+        class="form-textarea" 
+        value="{{description}}" 
+        bindinput="bindDescriptionInput" 
+        placeholder="请描述您的作品，包括拍摄思路、后期处理思路等" 
+        maxlength="500" 
+      />
+    </view>
+    
+    <!-- 作品图片上传 -->
+    <view class="form-item">
+      <view class="form-label">作品图片</view>
+      <view class="image-uploader">
+        <view wx:for="{{images}}" wx:key="index" class="image-item">
+          <image class="image" src="{{item}}"></image>
+          <text class="image-delete" bindtap="deleteImage" data-index="{{index}}">×</text>
+        </view>
+        <view wx:if="{{images.length < 9}}" class="image-add" bindtap="chooseImage">
+          <text class="image-add-icon">📷</text>
+          <text class="image-add-text">上传作品图片，最多9张</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 底部发布按钮 -->
+  <view class="bottom-button">
+    <button class="submit-button" bindtap="submitWork">发布作品</button>
+  </view>
+</view>

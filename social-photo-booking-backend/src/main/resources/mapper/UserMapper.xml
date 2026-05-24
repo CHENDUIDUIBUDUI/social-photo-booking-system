@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.photo.booking.mapper.UserMapper">
+    <resultMap id="UserResultMap" type="com.photo.booking.entity.User">
+        <id property="id" column="id"/>
+        <result property="openid" column="open_id"/>
+        <result property="phone" column="phone"/>
+        <result property="nickname" column="nickname"/>
+        <result property="avatar" column="avatar"/>
+        <result property="role" column="role_id"/>
+        <result property="status" column="status"/>
+        <result property="creditScore" column="credit_score"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <select id="selectByOpenid" resultMap="UserResultMap">
+        SELECT * FROM user WHERE open_id = #{openid} LIMIT 1
+    </select>
+
+    <select id="selectByPhone" resultMap="UserResultMap">
+        SELECT * FROM user WHERE phone = #{phone} LIMIT 1
+    </select>
+
+    <select id="selectById" resultMap="UserResultMap">
+        SELECT * FROM user WHERE id = #{id}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user (open_id, phone, password, nickname, avatar, role_id, status, credit_score, create_time, update_time)
+        VALUES (#{openid}, #{phone}, #{password}, #{nickname}, #{avatar}, #{role}, #{status}, #{creditScore}, NOW(), NOW())
+    </insert>
+
+    <update id="update">
+        UPDATE user
+        SET nickname = #{nickname},
+            avatar = #{avatar},
+            role_id = #{role},
+            phone = #{phone},
+            update_time = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateStatus">
+        UPDATE user SET status = #{status}, update_time = NOW() WHERE id = #{id}
+    </update>
+
+    <update id="updateCreditScore">
+        UPDATE user SET credit_score = #{creditScore}, update_time = NOW() WHERE id = #{id}
+    </update>
+    
+    <update id="updateRole">
+        UPDATE user SET role_id = #{role}, update_time = NOW() WHERE id = #{id}
+    </update>
+    
+    <delete id="deleteByPhone">
+        DELETE FROM user WHERE phone = #{phone}
+    </delete>
+
+    <select id="selectList" resultMap="UserResultMap">
+        SELECT * FROM user WHERE 1=1
+        <if test="role != null">
+            AND role_id = #{role}
+        </if>
+        <if test="status != null">
+            AND status = #{status}
+        </if>
+        ORDER BY create_time DESC
+    </select>
+
+    <!-- 用户资料相关 -->
+    <resultMap id="UserProfileResultMap" type="com.photo.booking.entity.UserProfile">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="realName" column="real_name"/>
+        <result property="gender" column="gender"/>
+        <result property="birthday" column="birthday"/>
+        <result property="location" column="location"/>
+        <result property="bio" column="bio"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <select id="selectUserProfileByUserId" resultMap="UserProfileResultMap">
+        SELECT * FROM user_profile WHERE user_id = #{userId} LIMIT 1
+    </select>
+
+    <insert id="insertUserProfile" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user_profile (user_id, real_name, gender, birthday, location, bio, create_time, update_time)
+        VALUES (#{userId}, #{realName}, #{gender}, #{birthday}, #{location}, #{bio}, NOW(), NOW())
+    </insert>
+
+    <update id="updateUserProfile">
+        UPDATE user_profile
+        SET real_name = #{realName},
+            gender = #{gender},
+            birthday = #{birthday},
+            location = #{location},
+            bio = #{bio},
+            update_time = NOW()
+        WHERE user_id = #{userId}
+    </update>
+</mapper>

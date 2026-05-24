@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.photo.booking.mapper.ReportMapper">
+    <resultMap id="ReportResult" type="com.photo.booking.entity.Report">
+        <id column="id" property="id" />
+        <result column="reporter_id" property="reporterId" />
+        <result column="type" property="type" />
+        <result column="target_id" property="targetId" />
+        <result column="reason" property="reason" />
+        <result column="images" property="images" />
+        <result column="status" property="status" />
+        <result column="handle_result" property="handleResult" />
+        <result column="handler_id" property="handlerId" />
+        <result column="handle_time" property="handleTime" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.photo.booking.entity.Report">
+        INSERT INTO report (reporter_id, type, target_id, reason, images, status, create_time)
+        VALUES (#{reporterId}, #{type}, #{targetId}, #{reason}, #{images}, #{status}, NOW())
+    </insert>
+
+    <select id="selectById" parameterType="java.lang.Long" resultMap="ReportResult">
+        SELECT * FROM report WHERE id = #{id}
+    </select>
+
+    <select id="selectByReporterId" parameterType="java.lang.Long" resultMap="ReportResult">
+        SELECT * FROM report WHERE reporter_id = #{reporterId}
+    </select>
+
+    <select id="selectByTarget" parameterType="java.util.Map" resultMap="ReportResult">
+        SELECT * FROM report WHERE target_id = #{targetId} AND type = #{type}
+    </select>
+
+    <select id="selectByStatus" parameterType="java.lang.Integer" resultMap="ReportResult">
+        SELECT * FROM report WHERE status = #{status}
+    </select>
+
+    <select id="selectAll" resultMap="ReportResult">
+        SELECT * FROM report
+    </select>
+
+    <update id="updateStatus" parameterType="java.util.Map">
+        UPDATE report SET status = #{status} WHERE id = #{id}
+    </update>
+</mapper>

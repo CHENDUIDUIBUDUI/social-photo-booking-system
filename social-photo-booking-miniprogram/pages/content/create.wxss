@@ -1,0 +1,411 @@
+/* 发布约拍需求页面样式 */
+.container {
+  min-height: 100vh;
+  background: #f8f9fa;
+  padding-bottom: 80rpx;
+}
+
+/* 顶部导航栏 */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100rpx;
+  padding: 32rpx 32rpx 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10rpx);
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-sizing: border-box;
+}
+
+.header-left {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-back {
+  font-size: 40rpx;
+  color: #333;
+  font-weight: 300;
+}
+
+.header-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.header-right {
+  width: 60rpx;
+  text-align: right;
+}
+
+.header-submit {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+/* 表单容器 */
+.form-container {
+  padding: 32rpx;
+  margin-top: 16rpx;
+  background: #fff;
+  border-radius: 48rpx 48rpx 0 0;
+  box-shadow: 0 -2rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 表单项 */
+.form-item {
+  margin-bottom: 40rpx;
+}
+
+.form-label {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16rpx;
+  line-height: 45rpx;
+}
+
+/* 拍摄类型单选 */
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.radio-item {
+  padding: 16rpx 32rpx;
+  border-radius: 24rpx;
+  background: #f0f2f5;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.radio-item.selected {
+  background: linear-gradient(135deg, #A8E6CF 0%, #DDA0DD 100%);
+  box-shadow: 0 4rpx 12rpx rgba(173, 216, 230, 0.3);
+}
+
+.radio-text {
+  font-size: 28rpx;
+  color: #666;
+  font-weight: 500;
+}
+
+.radio-item.selected .radio-text {
+  color: #fff;
+}
+
+/* 拍摄风格多选 */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.checkbox-item {
+  padding: 16rpx 32rpx;
+  border-radius: 24rpx;
+  background: #f0f2f5;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2rpx solid transparent;
+}
+
+.checkbox-item.selected {
+  background: linear-gradient(135deg, #A8E6CF 0%, #DDA0DD 100%);
+  box-shadow: 0 4rpx 12rpx rgba(173, 216, 230, 0.3);
+  border-color: #A8E6CF;
+}
+
+.checkbox-text {
+  font-size: 28rpx;
+  color: #666;
+  font-weight: 500;
+}
+
+.checkbox-item.selected .checkbox-text {
+  color: #fff;
+}
+
+/* 日期选择器 */
+.date-picker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 32rpx;
+  background: #f8f9fa;
+  border-radius: 24rpx;
+  border: 2rpx solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.date-picker:active {
+  border-color: #A8E6CF;
+  background: #f0f8f5;
+}
+
+.date-text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.date-arrow {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 输入框 */
+.form-input {
+  width: 100%;
+  padding: 24rpx 32rpx;
+  background: #f8f9fa;
+  border: 2rpx solid #e9ecef;
+  border-radius: 24rpx;
+  font-size: 28rpx;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: #A8E6CF;
+  background: #f0f8f5;
+  box-shadow: 0 0 0 4rpx rgba(168, 230, 207, 0.1);
+}
+
+.form-input::placeholder {
+  color: #999;
+}
+
+/* 日期输入容器 */
+.date-input-container {
+  display: flex;
+  gap: 16rpx;
+  align-items: center;
+}
+
+.date-input {
+  flex: 1;
+  padding: 24rpx 32rpx;
+  background: #f8f9fa;
+  border: 2rpx solid #e9ecef;
+  border-radius: 24rpx;
+  font-size: 28rpx;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.date-input:focus {
+  border-color: #A8E6CF;
+  background: #f0f8f5;
+  box-shadow: 0 0 0 4rpx rgba(168, 230, 207, 0.1);
+}
+
+.date-input::placeholder {
+  color: #999;
+}
+
+.date-picker-btn {
+  padding: 24rpx 32rpx;
+  background: linear-gradient(135deg, #A8E6CF 0%, #DDA0DD 100%);
+  border: none;
+  border-radius: 24rpx;
+  font-size: 28rpx;
+  color: #fff;
+  font-weight: 500;
+  box-shadow: 0 2rpx 8rpx rgba(173, 216, 230, 0.3);
+  transition: all 0.3s ease;
+  min-width: 120rpx;
+  height: 88rpx;
+  line-height: 40rpx;
+}
+
+.date-picker-btn::after {
+  border: none;
+}
+
+.date-picker-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 1rpx 4rpx rgba(173, 216, 230, 0.4);
+}
+
+/* 文本域 */
+.form-textarea {
+  width: 100%;
+  min-height: 200rpx;
+  padding: 24rpx 32rpx;
+  background: #f8f9fa;
+  border: 2rpx solid #e9ecef;
+  border-radius: 24rpx;
+  font-size: 28rpx;
+  color: #333;
+  line-height: 40rpx;
+  resize: vertical;
+  transition: all 0.3s ease;
+}
+
+.form-textarea:focus {
+  border-color: #A8E6CF;
+  background: #f0f8f5;
+  box-shadow: 0 0 0 4rpx rgba(168, 230, 207, 0.1);
+}
+
+.form-textarea::placeholder {
+  color: #999;
+}
+
+/* 图片上传 */
+.image-uploader {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  min-height: 160rpx;
+  padding: 40rpx;
+  border: 2rpx dashed #e9ecef;
+  border-radius: 32rpx;
+  background: #fafbfc;
+  transition: all 0.3s ease;
+}
+
+.image-uploader:active {
+  border-color: #A8E6CF;
+  background: #f0f8f5;
+}
+
+.image-item {
+  position: relative;
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-delete {
+  position: absolute;
+  top: 8rpx;
+  right: 8rpx;
+  width: 32rpx;
+  height: 32rpx;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.image-delete:active {
+  background: rgba(255, 0, 0, 0.8);
+  transform: scale(1.1);
+}
+
+.image-add {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 16rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border: 2rpx dashed #e9ecef;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.image-add:active {
+  background: #f0f8f5;
+  border-color: #A8E6CF;
+  transform: scale(0.98);
+}
+
+.image-add-icon {
+  font-size: 48rpx;
+  margin-bottom: 8rpx;
+}
+
+.image-add-text {
+  font-size: 20rpx;
+  color: #999;
+  text-align: center;
+  line-height: 28rpx;
+}
+
+/* 底部发布按钮 */
+.bottom-button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24rpx 32rpx;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10rpx);
+  border-top: 1rpx solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 -2rpx 20rpx rgba(0, 0, 0, 0.05);
+  z-index: 99;
+}
+
+.submit-button {
+  width: 100%;
+  height: 96rpx;
+  background: linear-gradient(135deg, #A8E6CF 0%, #DDA0DD 100%);
+  border: none;
+  border-radius: 48rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: 0 4rpx 16rpx rgba(173, 216, 230, 0.4);
+  transition: all 0.3s ease;
+}
+
+.submit-button::after {
+  border: none;
+}
+
+.submit-button:active {
+  transform: scale(0.98);
+  box-shadow: 0 2rpx 8rpx rgba(173, 216, 230, 0.6);
+}
+
+/* 适配iPhone安全区域 */
+@media (display-mode: standalone) {
+  .bottom-button {
+    padding-bottom: env(safe-area-inset-bottom, 24rpx);
+  }
+}
+
+/* 动画效果 */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.submit-button {
+  animation: pulse 2s infinite;
+}

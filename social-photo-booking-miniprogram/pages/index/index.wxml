@@ -1,0 +1,114 @@
+<!-- index.wxml -->
+<view class="container">
+  <!-- 顶部导航区 -->
+  <view class="top-nav">
+    <view class="nav-left">
+      <view class="location" bindtap="chooseLocation">
+        <text class="location-text">{{currentLocation}}</text>
+        <icon type="arrowdown" size="14" />
+      </view>
+    </view>
+    <view class="nav-right">
+      <icon type="info" size="24" class="nav-icon" bindtap="navigateToMessage" />
+    </view>
+  </view>
+  
+  <!-- 搜索栏 -->
+  <view class="search-bar" bindtap="navigateToSearch">
+    <icon type="search" size="20" class="search-icon" />
+    <input type="text" placeholder="搜索摄影师 / 风格 / 作品" class="search-input" disabled />
+  </view>
+  
+  <!-- Banner轮播区 -->
+  <view class="banner-container">
+    <swiper class="banner-swiper" indicator-dots="true" autoplay="true" interval="3000" duration="500" circular="true">
+      <swiper-item wx:for="{{bannerList}}" wx:key="id">
+        <image src="{{item.imageUrl}}" mode="aspectFill" class="banner-image" lazy-load="true" placeholder="/assets/images/default-avatar.png" />
+      </swiper-item>
+    </swiper>
+  </view>
+  
+  <!-- 分类标签区 -->
+  <view class="category-section">
+    <scroll-view scroll-x="true" class="category-scroll">
+      <view class="category-list">
+        <view wx:for="{{categories}}" wx:key="id" class="category-item {{activeCategory === item.id ? 'active' : ''}}" bindtap="switchCategory" data-id="{{item.id}}" data-name="{{item.name}}">
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  
+  <!-- 热门摄影师区 -->
+  <view class="photographer-section">
+    <view class="section-title">
+      <text class="title-text">热门摄影师</text>
+      <text class="more-text">更多</text>
+    </view>
+    <scroll-view scroll-x="true" class="photographer-scroll">
+      <view class="photographer-list">
+        <view wx:for="{{photographers}}" wx:key="id" class="photographer-item" bindtap="navigateToPhotographer" data-id="{{item.id}}">
+          <image src="{{item.avatar}}" mode="aspectFill" class="photographer-avatar" lazy-load="true" placeholder="/assets/images/default-avatar.png" />
+          <text class="photographer-name">{{item.name}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  
+
+  
+  <!-- 推荐作品瀑布流 -->
+  <view class="works-section">
+    <view class="section-title">
+      <text class="title-text">推荐作品</text>
+      <text class="more-text">更多</text>
+    </view>
+    <view class="works-grid">
+      <view class="works-column">
+        <block wx:for="{{leftWorksList}}" wx:key="id">
+          <view class="work-card" bindtap="navigateToDetail" data-id="{{item.id}}">
+            <image src="{{item.imageUrl || '/assets/images/default-avatar.png'}}" mode="aspectFill" class="work-image" lazy-load="true" binderror="onImageError" data-id="{{item.id}}" />
+            <view class="work-info">
+              <text class="work-title">{{item.title}}</text>
+              <view class="work-meta">
+                <view class="author-info">
+                  <image src="{{item.authorAvatar}}" mode="aspectFill" class="author-avatar" lazy-load="true" placeholder="/assets/images/default-avatar.png" />
+                  <text class="author-name">{{item.author}}</text>
+                </view>
+                <view class="work-stats">
+                  <icon type="favor" size="16" class="stats-icon" />
+                  <text class="stats-text">{{item.likes}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class="works-column">
+        <block wx:for="{{rightWorksList}}" wx:key="id">
+          <view class="work-card" bindtap="navigateToDetail" data-id="{{item.id}}">
+            <image src="{{item.imageUrl || '/assets/images/default-avatar.png'}}" mode="aspectFill" class="work-image" lazy-load="true" binderror="onImageError" data-id="{{item.id}}" />
+            <view class="work-info">
+              <text class="work-title">{{item.title}}</text>
+              <view class="work-meta">
+                <view class="author-info">
+                  <image src="{{item.authorAvatar}}" mode="aspectFill" class="author-avatar" lazy-load="true" placeholder="/assets/images/default-avatar.png" />
+                  <text class="author-name">{{item.author}}</text>
+                </view>
+                <view class="work-stats">
+                  <icon type="favor" size="16" class="stats-icon" />
+                  <text class="stats-text">{{item.likes}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 加载更多 -->
+  <view class="load-more" wx:if="{{hasMore}}">
+    <text>加载更多</text>
+  </view>
+</view>

@@ -195,68 +195,31 @@ Page({
   },
 
   /**
-   * 调用后端注册接口
+   * 调用后端注册接口（通过统一 request 封装，自动切环境）
    */
   requestRegister: function (phone, password, nickname, tags) {
-    console.log('开始调用注册接口，phone:', phone, 'password:', password, 'nickname:', nickname, 'tags:', tags)
-    console.log('请求地址:', 'http://127.0.0.1:8081/api/auth/register')
-    
-    // 直接硬编码请求地址，确保使用正确的URL
-    const registerUrl = 'http://127.0.0.1:8081/api/auth/register';
-    
-    
-    wx.request({
-      url: registerUrl,
+    const request = require('../../utils/request.js');
+    console.log('开始调用注册接口，phone:', phone, 'nickname:', nickname, 'tags:', tags);
+
+    this.setData({ loading: true, errorMessage: '' });
+    request('/api/auth/register', {
       method: 'POST',
-      data: {
-        phone: phone,
-        password: password,
-        nickname: nickname,
-        tags: tags
-      },
-      timeout: 30000, // 增加超时时间
-      success: (res) => {
-        console.log('注册接口响应:', res)
-        if (res.data.code === 200) {
-          // 注册成功，跳转到登录页面
-          wx.showToast({
-            title: '注册成功，请登录',
-            icon: 'success'
-          })
-          setTimeout(() => {
-            wx.redirectTo({
-              url: '/pages/login/index'
-            })
-          }, 1500)
-        } else {
-          this.setData({
-            loading: false,
-            errorMessage: res.data.message || '注册失败，请重试'
-          })
-        }
-      },
-      fail: (err) => {
-        console.log('请求注册失败:', err)
-        if (err.errMsg.includes('request:fail')) {
-          if (err.errMsg.includes('timeout')) {
-            this.setData({
-              loading: false,
-              errorMessage: '网络请求超时，请检查网络连接'
-            })
-          } else {
-            this.setData({
-              loading: false,
-              errorMessage: '网络请求失败，请检查网络连接或在开发者工具中开启不校验域名选项'
-            })
-          }
-        } else {
-          this.setData({
-            loading: false,
-            errorMessage: '网络错误，请重试'
-          })
-        }
+      data: { phone, password, nickname, tags },
+      noAuth: true
+    }).then(res => {
+      console.log('注册接口响应:', res);
+      this.setData({ loading: false });
+      if (res && res.code === 200) {
+        wx.showToast({ title: '注册成功，请登录', icon: 'success' });
+        setTimeout(() => {
+          wx.redirectTo({ url: '/pages/login/index' });
+        }, 1500);
+      } else {
+        this.setData({ errorMessage: (res && res.message) || '注册失败，请重试' });
       }
-    })
+    }).catch(() => {
+      this.setData({ loading: false });
+    });
   }
 })
 

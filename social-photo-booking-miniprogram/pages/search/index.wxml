@@ -3,7 +3,7 @@
   <!-- 搜索栏 -->
   <view class="search-container">
     <view class="search-input-wrapper">
-      <icon type="search" size="20" class="search-icon" />
+      <icon type="search" size="18" class="search-icon" />
       <input 
         type="text" 
         placeholder="搜索摄影师 / 风格 / 作品" 
@@ -20,7 +20,7 @@
   <!-- 历史搜索 -->
   <view wx:if="!isSearching && !hasResults && history.length > 0" class="history-section">
     <view class="history-header">
-      <text class="history-title">历史搜索</text>
+      <view class="history-title">历史搜索</view>
       <text class="clear-history" bindtap="clearHistory">清空</text>
     </view>
     <view class="history-list">
@@ -32,7 +32,7 @@
   
   <!-- 热门搜索 -->
   <view wx:if="!isSearching && !hasResults" class="hot-section">
-    <text class="hot-title">热门搜索</text>
+    <view class="hot-title">热门搜索</view>
     <view class="hot-list">
       <view wx:for="{{hotKeywords}}" wx:key="index" class="hot-item" bindtap="selectHotKeyword" data-keyword="{{item}}">
         <text>{{item}}</text>
@@ -42,14 +42,15 @@
   
   <!-- 搜索中 -->
   <view wx:if="isSearching" class="loading-section">
-    <text>搜索中...</text>
+    <view class="loading-spinner"></view>
+    <text class="loading-text">搜索中...</text>
   </view>
   
   <!-- 搜索结果 -->
   <view wx:if="hasResults" class="results-section">
     <!-- 摄影师结果 -->
     <view wx:if="photographers.length > 0" class="result-group">
-      <text class="result-title">摄影师</text>
+      <view class="result-title">摄影师</view>
       <view class="photographer-list">
         <view wx:for="{{photographers}}" wx:key="id" class="photographer-item" bindtap="navigateToPhotographer" data-id="{{item.id}}">
           <image src="{{item.avatar}}" mode="aspectFill" class="photographer-avatar" />
@@ -63,7 +64,7 @@
     
     <!-- 作品结果 -->
     <view wx:if="works.length > 0" class="result-group">
-      <text class="result-title">作品</text>
+      <view class="result-title">作品</view>
       <view class="works-grid">
         <view wx:for="{{works}}" wx:key="id" class="work-item" bindtap="navigateToWork" data-id="{{item.id}}">
           <image src="{{item.imageUrl}}" mode="aspectFill" class="work-image" />
@@ -74,7 +75,8 @@
     
     <!-- 无结果 -->
     <view wx:if="photographers.length === 0 && works.length === 0" class="no-results">
-      <text>未找到相关内容</text>
+      <text class="no-results-icon">🔍</text>
+      <text class="no-results-text">未找到相关内容</text>
     </view>
   </view>
 </view>

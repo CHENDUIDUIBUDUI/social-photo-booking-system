@@ -9,6 +9,7 @@ public class Content {
     private Long id;
     private Long userId;
     private String title;
+    private String name; // 非数据库字段，用于返回作品名称（值=title，供前端使用）
     private String description;
     private String coverImage;
     private String tags;

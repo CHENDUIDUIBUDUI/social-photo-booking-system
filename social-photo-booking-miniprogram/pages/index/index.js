@@ -348,7 +348,7 @@ Page({
     
     wx.request({
       url: `${getApp().globalData.baseUrl}/api/content/list`,
-      method: 'GET',
+      method: 'POST',
       header: token ? { 'Authorization': 'Bearer ' + token } : {},
       data: requestData,
       timeout: 10000,
@@ -383,7 +383,7 @@ Page({
             // 模拟数据，实际项目中应该从API获取
             item.authorAvatar = item.authorAvatar || `https://api.dicebear.com/7.x/personas/svg?seed=author${item.id}`;
             item.likes = item.likes || (item.likeCount || Math.floor(Math.random() * 100));
-            item.author = item.author || '摄影师';
+            item.author = item.name || '摄影师';
             
             if (index % 2 === 0) {
               leftWorksList.push(item);

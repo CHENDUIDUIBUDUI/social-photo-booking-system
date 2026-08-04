@@ -1,4 +1,5 @@
 const app = getApp();
+const request = require('../../utils/request.js');
 
 Page({
   data: {
@@ -323,44 +324,30 @@ Page({
       portfolio: JSON.stringify(this.data.formData.works)
     };
 
-    wx.request({
-      url: 'http://127.0.0.1:8086/admin/api/photographer/application/submit',
+    // useAdmin: true 走 8086 管理后台后端（按 utils/config.js ENV 自动切）
+    request('/admin/api/photographer/application/submit', {
+      useAdmin: true,
       method: 'POST',
-      data: requestData,
-      header: {
-        'Authorization': 'Bearer ' + token,
-        'Content-Type': 'application/json'
-      },
-      success: (res) => {
-        this.setData({
-          submitting: false
+      data: requestData
+    }).then(res => {
+      this.setData({ submitting: false });
+      if (res && res.code === 200) {
+        wx.showModal({
+          title: '申请成功',
+          content: '您的摄影师申请已提交，我们会在1-3个工作日内完成审核，请耐心等待',
+          showCancel: false,
+          success: () => {
+            wx.navigateBack();
+          }
         });
-
-        if (res.data.code === 200) {
-          wx.showModal({
-            title: '申请成功',
-            content: '您的摄影师申请已提交，我们会在1-3个工作日内完成审核，请耐心等待',
-            showCancel: false,
-            success: () => {
-              wx.navigateBack();
-            }
-          });
-        } else {
-          wx.showToast({
-            title: res.data.message || '提交失败',
-            icon: 'none'
-          });
-        }
-      },
-      fail: (err) => {
-        this.setData({
-          submitting: false
-        });
+      } else {
         wx.showToast({
-          title: '网络错误，请重试',
+          title: (res && res.message) || '提交失败',
           icon: 'none'
         });
       }
+    }).catch(() => {
+      this.setData({ submitting: false });
     });
   }
 });

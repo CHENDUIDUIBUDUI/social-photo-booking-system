@@ -99,16 +99,18 @@ public class PhotographerController {
         return result;
     }
 
-    @GetMapping("/list")
-    public Map<String, Object> getPhotographerList(
-            @RequestParam(required = false) String region,
-            @RequestParam(required = false) String style,
-            @RequestParam(required = false) BigDecimal minPrice,
-            @RequestParam(required = false) BigDecimal maxPrice,
-            @RequestParam(required = false) Integer certified,
-            @RequestParam(required = false) String sort) {
+    @PostMapping("/list")
+    public Map<String, Object> getPhotographerList(@RequestBody(required = false) Map<String, Object> params) {
         Map<String, Object> result = new HashMap<>();
         try {
+            // 从请求体提取参数（兼容 body 为空）
+            String region = params != null && params.get("region") != null ? params.get("region").toString() : null;
+            String style = params != null && params.get("style") != null ? params.get("style").toString() : null;
+            BigDecimal minPrice = params != null && params.get("minPrice") != null ? new BigDecimal(params.get("minPrice").toString()) : null;
+            BigDecimal maxPrice = params != null && params.get("maxPrice") != null ? new BigDecimal(params.get("maxPrice").toString()) : null;
+            Integer certified = params != null && params.get("certified") != null ? Integer.valueOf(params.get("certified").toString()) : null;
+            String sort = params != null && params.get("sort") != null ? params.get("sort").toString() : null;
+
             // 获取所有摄影师列表
             List<Photographer> photographers = photographerService.getAllPhotographers();
             

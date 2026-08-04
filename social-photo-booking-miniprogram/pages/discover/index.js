@@ -56,10 +56,11 @@ Page({
     
     wx.request({
       url: app.globalData.baseUrl + '/api/photographer/list',
-      method: 'GET',
+      method: 'POST',
       header: {
         'Authorization': 'Bearer ' + wx.getStorageSync('token')
       },
+      data: {},
       success: (res) => {
         if (res.data.code === 200) {
           const photographers = res.data.data.map(photographer => {
@@ -189,7 +190,7 @@ Page({
     
     wx.request({
       url: app.globalData.baseUrl + '/api/photographer/list',
-      method: 'GET',
+      method: 'POST',
       header: {
         'Authorization': 'Bearer ' + wx.getStorageSync('token')
       },

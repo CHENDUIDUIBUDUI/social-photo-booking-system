@@ -97,19 +97,21 @@ public class ApiContentController {
     }
 
     // 获取内容列表
-    @GetMapping("/list")
-    public Map<String, Object> getContentList(
-            @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "10") int pageSize,
-            @RequestParam(required = false) Integer type,
-            @RequestParam(required = false) String tag,
-            @RequestParam(required = false) String tags, // 支持前端传递的tags参数
-            @RequestParam(required = false) String location,
-            @RequestParam(required = false) Double latitude,
-            @RequestParam(required = false) Double longitude,
-            @RequestParam(required = false) Integer status) {
+    @PostMapping("/list")
+    public Map<String, Object> getContentList(@RequestBody(required = false) Map<String, Object> params) {
         Map<String, Object> result = new HashMap<>();
         try {
+            // 从请求体提取参数（兼容 body 为空），保留原有全部筛选能力
+            int page = params != null && params.get("page") != null ? Integer.parseInt(params.get("page").toString()) : 1;
+            int pageSize = params != null && params.get("pageSize") != null ? Integer.parseInt(params.get("pageSize").toString()) : 10;
+            Integer type = params != null && params.get("type") != null ? Integer.valueOf(params.get("type").toString()) : null;
+            String tag = params != null && params.get("tag") != null ? params.get("tag").toString() : null;
+            String tags = params != null && params.get("tags") != null ? params.get("tags").toString() : null;
+            String location = params != null && params.get("location") != null ? params.get("location").toString() : null;
+            Double latitude = params != null && params.get("latitude") != null ? Double.valueOf(params.get("latitude").toString()) : null;
+            Double longitude = params != null && params.get("longitude") != null ? Double.valueOf(params.get("longitude").toString()) : null;
+            Integer status = params != null && params.get("status") != null ? Integer.valueOf(params.get("status").toString()) : null;
+
             String statusStr = status != null ? String.valueOf(status) : null;
             List<Content> list = contentService.search(null, null, null, statusStr, page, pageSize);
             

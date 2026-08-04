@@ -50,3 +50,11 @@ uploads/
 *.swp
 *.swo
 *~
+
+# Screenshots / local only
+xainmu/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
